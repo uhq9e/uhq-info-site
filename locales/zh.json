@@ -1,0 +1,25 @@
+{
+  "site": {
+    "title": "若千人的末路",
+    "description": "存放一些点子和yuyuyu图的地方。"
+  },
+  "shared": {
+    "error": "错误",
+    "confirmed": "已确认"
+  },
+  "requestErrors": {
+    "network": "网络错误",
+    "status": {
+      "401": "需要认证",
+      "403": "没有权限",
+      "404": "无此条目",
+      "500": "内部错误"
+    }
+  },
+  "messages": {
+    "sessionExpired": "会话失效",
+    "validationSuccess": "验证通过",
+    "wrongToken": "Token有误",
+    "itemDeleted": "条目已删除"
+  }
+}

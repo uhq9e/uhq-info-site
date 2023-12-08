@@ -1,0 +1,32 @@
+@import url("./font.css");
+@import url("./lib.css");
+
+:root {
+  font-family: "Inter var", "MiSans";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  --surface-color: #e5e7eb;
+}
+
+* {
+  text-rendering: geometricPrecision;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration-line: none;
+  color: inherit;
+  transition: all 0.25s;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+.text-decoration {
+  text-decoration: underline;
+  text-decoration-thickness: 0.5em;
+  text-decoration-color: rgba(255, 228, 0, 0.4);
+  text-underline-offset: -0.2em;
+  text-decoration-skip-ink: none;
+}
