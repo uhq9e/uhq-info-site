@@ -1,0 +1,35 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Copy .output to vultr
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: .output
+          remote: /root/frontend/.output
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+      - name: Copy ecosystem.config.js to vultr
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ecosystem.config.js
+          remote: /root/frontend/ecosystem.config.js
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
