@@ -7,7 +7,8 @@
 
 <script setup lang="ts">
 import "@master/css";
-import { init, Style } from "@master/css";
+import pkg from "@master/css";
+const { init, Style } = pkg;
 
 Style.extend("classes", {
   "general-width": "max-w:40rem",
