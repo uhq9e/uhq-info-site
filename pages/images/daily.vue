@@ -15,15 +15,14 @@
         <NuxtLink
           v-for="image in Object.entries(grouped)"
           :to="`/images/daily-${image[0]}`"
-          target="_blank"
           class="b:1 b:solid b:var(--surface-border) r:6 px:16 py:8 bg:white general-width w:full"
         >
           <div class="f:bold mb:8 text-decoration">{{ image[0] }}</div>
           <div
-            class="w:full h:150 px:16 py:8 flex flex:row gap:8 overflow-x:auto b:1 b:solid b:var(--surface-border) r:6 bg:var(--surface-ground)"
+            class="w:full h:150 px:16 py:8 flex flex:row gap:8 overflow-x:hidden b:1 b:solid b:var(--surface-border) r:6 bg:var(--surface-ground)"
           >
             <div
-              v-for="file in image[1]"
+              v-for="file in image[1].slice(0, 6)"
               class="h:full r:6 shadow-2 aspect:1/1 bg:center bg:cover"
               :style="{
                 backgroundImage: `url('https://object.wakachika.love/${file.local_files[0].path}')`,
@@ -82,7 +81,7 @@ const page = computed({
   set: (p) => router.push({ query: { p } }),
 });
 
-const rows = ref(20);
+const rows = ref(100);
 const first = ref((page.value - 1) * rows.value);
 const queryParams = ref<QueryParams>({
   offset: first,

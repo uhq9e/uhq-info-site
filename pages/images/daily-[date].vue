@@ -1,12 +1,10 @@
 <template>
-  <div v-if="data">
-    <PageTitle :value="(route.params.date as string)" />
-    <div class="flex flex:col w:full align-items:center gap:8">
-      <ImageItem
-        v-for="item in data?.items"
-        :item="item"
-        class="general-width"
-      />
+  <div v-if="data" class="flex flex:col">
+    <PageTitle :value="(route.params.date as string)" show-back-button />
+    <div
+      class="flex flex:col w:full align-items:center as:center gap:8 general-width"
+    >
+      <ImageItem v-for="item in data?.items" :item="item" class="w:full" />
     </div>
   </div>
 </template>
@@ -39,8 +37,10 @@ watchEffect(() => {
     console.log(error.value?.status);
     switch (error.value?.status) {
       case 422:
-        console.warn("你是否走错了地方？a");
-        break;
+        throw createError({
+          statusCode: 404,
+          statusMessage: "日期不存在",
+        });
 
       default:
         console.error("网络错误");
@@ -52,7 +52,11 @@ watchEffect(() => {
 watchEffect(() => {
   if (data.value) {
     if (!data.value.count) {
-      console.warn("你是否走错了地方？b");
+      throw createError({
+        statusCode: 404,
+        statusMessage: "日期不存在",
+        fatal: true,
+      });
     }
   }
 });

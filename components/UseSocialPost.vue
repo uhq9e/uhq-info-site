@@ -3,12 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import type { SocialPostType } from "@/utils/index";
-import { matchSocialPostByUrl } from "@/utils/index";
+import SocialPostType from "@/utils/socialPostType";
 
 const props = defineProps<{
   url: string;
 }>();
 
-const socialPostType = ref<SocialPostType>(matchSocialPostByUrl(props.url));
+const socialPostType = ref<SocialPostType>(
+  SocialPostType.matchByUrl(props.url)
+);
 </script>

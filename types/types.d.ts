@@ -7,6 +7,10 @@ interface InsertResponse<T> {
   id: T;
 }
 
+interface UpdateResponse<T> {
+  id: T;
+}
+
 interface TokenStorage {
   token: string | null;
 }

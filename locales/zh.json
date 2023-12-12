@@ -20,6 +20,7 @@
     "sessionExpired": "会话失效",
     "validationSuccess": "验证通过",
     "wrongToken": "Token有误",
-    "itemDeleted": "条目已删除"
+    "itemDeleted": "条目已删除",
+    "successfulOperation": "操作成功"
   }
 }

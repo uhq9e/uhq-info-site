@@ -15,9 +15,9 @@
         <UseSocialPost v-for="(url, i) in item.urls" :url="url" v-slot="slot">
           <NuxtLink :href="url" target="_blank">
             <Tag
-              :value="slot.socialPostType.key"
+              :value="slot.socialPostType.obj.key"
               :title="slot.socialPostType.toDisplay()"
-              :style="{ backgroundColor: slot.socialPostType.color }"
+              :style="{ backgroundColor: slot.socialPostType.obj.color }"
               class="p-ripple capitalize"
               v-ripple
             />
@@ -25,7 +25,7 @@
         </UseSocialPost>
       </div>
     </div>
-    <div class="w:full">
+    <div class="w:full rel">
       <div class="flex flex:row h:100 py:8 gap:8">
         <div
           v-for="(file, i) in item.local_files"
@@ -36,7 +36,7 @@
             },
           ]"
           :style="{
-            backgroundImage: `url('https://object.wakachika.love/${file.path}')`,
+            backgroundImage: `url(https://object.wakachika.love/${file.path})`,
           }"
           @click="selectionIndex = i"
         ></div>
@@ -45,15 +45,27 @@
         :src="`https://object.wakachika.love/${item.local_files[selectionIndex].path}`"
         :alt="item.local_files[selectionIndex].file_name"
         class="w:inherit r:6"
+        loading="lazy"
       />
+      <div
+        v-show="showNsfwMask"
+        class="abs top:0 right:0 bottom:0 left:0 bd:blur(75px) flex flex:row justify-content:center align-items:center"
+      >
+        <div class="flex flex:col align-items:center">
+          <h1 class="mb:2">NSFW</h1>
+          <div class="f:0.8em mb:16">工作时禁止观看</div>
+          <Button @click="showNsfwMask = false">显示内容</Button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   item: ImageItem;
 }>();
 
 const selectionIndex = ref(0);
+const showNsfwMask = ref(props.item.nsfw);
 </script>

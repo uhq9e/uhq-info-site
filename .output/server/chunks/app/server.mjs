@@ -961,7 +961,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/daily-_date_-8477cf8b.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/daily-_date_-aedfa6cc.mjs').then((m) => m.default || m)
   },
   {
     name: "images-daily",
@@ -969,7 +969,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/daily-cb6ddac7.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/daily-3b0dbeeb.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -977,7 +977,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-ff3d7d39.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-8afad976.mjs').then((m) => m.default || m)
   },
   {
     path: "/manage",
@@ -988,7 +988,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/authors-afa27fc5.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/authors-d295dbbc.mjs').then((m) => m.default || m)
       },
       {
         name: "manage-images",
@@ -996,7 +996,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/images-0e1c8764.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/images-b35ef855.mjs').then((m) => m.default || m)
       },
       {
         name: "manage",
@@ -1011,7 +1011,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/manage-b60beee1.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/manage-e31905c7.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1270,7 +1270,7 @@ const LazyDropdown = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/
 }).then((r) => r.default));
 const LazyEditor = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/editor.esm-b29f7a6d.mjs').then((r) => r.default));
 const LazyInputMask = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputmask.esm-ca52eebf.mjs').then((r) => r.default));
-const LazyInputNumber = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputnumber.esm-3190ec1b.mjs').then((r) => r.default));
+const LazyInputNumber = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputnumber.esm-3ad590f7.mjs').then((r) => r.default));
 const LazyInputSwitch = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputswitch.esm-4827c09e.mjs').then((r) => r.default));
 const LazyInputText = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputtext.esm-f33fbeb4.mjs').then((r) => r.default));
 const LazyKnob = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/knob.esm-6a1b0b99.mjs').then((r) => r.default));
@@ -1291,15 +1291,15 @@ const LazySplitButton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nu
 const LazyColumn = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/column.esm-448b01a0.mjs').then((r) => r.default));
 const LazyRow = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/row.esm-56256f61.mjs').then((r) => r.default));
 const LazyColumnGroup = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/columngroup.esm-bb2ef589.mjs').then((r) => r.default));
-const LazyDataTable = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/datatable.esm-528efe18.mjs').then((r) => r.default));
-const LazyDataView = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dataview.esm-0c67720a.mjs').then((r) => r.default));
+const LazyDataTable = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/datatable.esm-e2942884.mjs').then((r) => r.default));
+const LazyDataView = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dataview.esm-abbd30c4.mjs').then((r) => r.default));
 const LazyDataViewLayoutOptions = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dataviewlayoutoptions.esm-6c53707d.mjs').then((r) => r.default));
 const LazyOrderList = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/orderlist.esm-86eb93ed.mjs').then((r) => r.default));
 const LazyOrganizationChart = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/organizationchart.esm-8260c68c.mjs').then((r) => r.default));
-const LazyPaginator = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/paginator.esm-47d8a321.mjs').then((r) => r.default));
+const LazyPaginator = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/paginator.esm-bb411448.mjs').then((r) => r.default));
 const LazyPickList = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/picklist.esm-bc452ddd.mjs').then((r) => r.default));
 const LazyTree = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tree.esm-450e9aa6.mjs').then((r) => r.default));
-const LazyTreeTable = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/treetable.esm-fe30c491.mjs').then((r) => r.default));
+const LazyTreeTable = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/treetable.esm-b3f4f633.mjs').then((r) => r.default));
 const LazyTimeline = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/timeline.esm-15a73514.mjs').then((r) => r.default));
 const LazyVirtualScroller = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/virtualscroller.esm-a1fbc95c.mjs').then((r) => r.default));
 const LazyAccordion = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/accordion.esm-0c9627f2.mjs').then((r) => r.default));
@@ -1344,7 +1344,7 @@ const LazyImage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/ima
 const LazyAvatar = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/avatar.esm-070bcc6d.mjs').then((r) => r.default));
 const LazyAvatarGroup = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/avatargroup.esm-50ed2dc2.mjs').then((r) => r.default));
 const LazyBadge = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/badge.esm-c4a594dc.mjs').then((r) => r.default));
-const LazyBlockUi = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/blockui.esm-dd15814f.mjs').then((r) => r.default));
+const LazyBlockUI = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/blockui.esm-dd15814f.mjs').then((r) => r.default));
 const LazyChip = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/chip.esm-9e9b8203.mjs').then((r) => r.default));
 const LazyInplace = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inplace.esm-a4bce7ca.mjs').then((r) => r.default));
 const LazyScrollTop = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/scrolltop.esm-a07da07e.mjs').then((r) => r.default));
@@ -1435,7 +1435,7 @@ const lazyGlobalComponents = [
   ["Avatar", LazyAvatar],
   ["AvatarGroup", LazyAvatarGroup],
   ["Badge", LazyBadge],
-  ["BlockUi", LazyBlockUi],
+  ["BlockUI", LazyBlockUI],
   ["Chip", LazyChip],
   ["Inplace", LazyInplace],
   ["ScrollTop", LazyScrollTop],
@@ -6187,7 +6187,7 @@ const resolveNuxtI18nOptions = async (context) => {
   };
   nuxtI18nOptions.vueI18n = { messages: {} };
   await mergeVueI18nConfigs(() => import(
-    './_nuxt/i18n.config-68ee1e3c.mjs'
+    './_nuxt/i18n.config-f65c564e.mjs'
     /* webpackChunkName: __i18n_config_ts_bffaebcb */
   ));
   return nuxtI18nOptions;
@@ -11743,7 +11743,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           if (_push2) {
             _push2(ssrRenderComponent(_component_NuxtLink, {
               to: "/",
-              class: { "text-primary": isActive("/") }
+              class: { "font-color:var(--primary-color)": isActive("/") }
             }, {
               default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
@@ -11760,7 +11760,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             return [
               createVNode(_component_NuxtLink, {
                 to: "/",
-                class: { "text-primary": isActive("/") }
+                class: { "font-color:var(--primary-color)": isActive("/") }
               }, {
                 default: withCtx(() => [
                   createVNode("span", { class: "f:bold" }, toDisplayString$1(unref(t)("site.title")), 1)
@@ -11777,7 +11777,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               _push2(ssrRenderComponent(_component_NuxtLink, {
                 key: item.path,
                 to: item.path,
-                class: { "text-primary": isActive(item.path) }
+                class: { "font-color:var(--primary-color)": isActive(item.path) }
               }, {
                 default: withCtx((_2, _push3, _parent3, _scopeId2) => {
                   if (_push3) {
@@ -11798,7 +11798,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 return createVNode(_component_NuxtLink, {
                   key: item.path,
                   to: item.path,
-                  class: { "text-primary": isActive(item.path) }
+                  class: { "font-color:var(--primary-color)": isActive(item.path) }
                 }, {
                   default: withCtx(() => [
                     createTextVNode(toDisplayString$1(item.name), 1)
@@ -12102,5 +12102,5 @@ let entry;
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { ConfirmationEventBus as A, BaseStyle as B, ConnectedOverlayScrollHandler as C, DomHandler as D, DynamicDialogEventBus as E, FilterMatchMode as F, Tooltip as G, ObjectUtils as O, Ripple as R, ToastEventBus as T, UniqueComponentId as U, ZIndexUtils as Z, _export_sfc as _, __nuxt_component_0 as a, useRouter as b, createError as c, useI18n as d, entry$1 as default, useConfirm as e, useToast as f, useDialog as g, useObjectUrl as h, toValue as i, tryOnScopeDispose as j, asyncDataDefaults as k, useNuxtApp as l, fetchDefaults as m, useRequestFetch as n, useState as o, useLocalStorage as p, __nuxt_component_5 as q, injectHead as r, resolveUnrefHeadInput as s, toRef as t, useRoute as u, script$2 as v, FocusTrap as w, primebus as x, FilterService as y, FilterOperator as z };
+export { ConfirmationEventBus as A, BaseStyle as B, ConnectedOverlayScrollHandler as C, DomHandler as D, DynamicDialogEventBus as E, FilterMatchMode as F, Tooltip as G, ObjectUtils as O, Ripple as R, ToastEventBus as T, UniqueComponentId as U, ZIndexUtils as Z, _export_sfc as _, __nuxt_component_0 as a, useRouter as b, createError as c, useI18n as d, entry$1 as default, useConfirm as e, useToast as f, useDialog as g, useObjectUrl as h, toValue as i, tryOnScopeDispose as j, useState as k, asyncDataDefaults as l, useNuxtApp as m, fetchDefaults as n, useRequestFetch as o, useLocalStorage as p, __nuxt_component_5 as q, injectHead as r, resolveUnrefHeadInput as s, toRef as t, useRoute as u, script$2 as v, FocusTrap as w, primebus as x, FilterService as y, FilterOperator as z };
 //# sourceMappingURL=server.mjs.map

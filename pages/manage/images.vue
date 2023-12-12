@@ -96,15 +96,24 @@
         </template>
       </Column>
       <Column header="操作">
-        <template #body="slotProps" class="flex flex:row gap:4">
-          <Button
-            @click="onDeleteItem(slotProps.data.id)"
-            icon="pi pi-trash"
-            size="small"
-            severity="danger"
-            :loading="loading"
-            text
-          />
+        <template #body="slotProps">
+          <div class="flex flex:row gap:4">
+            <Button
+              @click="showEditItemDialog(slotProps.data)"
+              icon="pi pi-pencil"
+              size="small"
+              severity="info"
+              text
+            />
+            <Button
+              @click="onDeleteItem(slotProps.data.id)"
+              icon="pi pi-trash"
+              size="small"
+              severity="danger"
+              :loading="loading"
+              text
+            />
+          </div>
         </template>
       </Column>
     </DataTable>
@@ -130,7 +139,7 @@ import type {
 } from "primevue/datatable";
 import type { MenuItem } from "primevue/menuitem";
 import { FilterMatchMode } from "primevue/api";
-import { sortMetaArrayToFormat } from "~/utils";
+import { sortMetaArrayToFormat, statusHandler } from "~/utils";
 
 interface QueryParams {
   offset: number;
@@ -188,44 +197,9 @@ function onDeleteItem(id: number) {
           ignoreResponseError: true,
         })
         .then((resp) => {
-          switch (resp.status) {
-            case 200:
-              execute();
-              toast.add({
-                severity: "info",
-                summary: t("shared.confirmed"),
-                detail: t("messages.itemDeleted"),
-                life: 3000,
-              });
-              break;
-
-            case 403:
-              toast.add({
-                severity: "error",
-                summary: t("shared.error"),
-                detail: t("requestErrors.status.403"),
-                life: 3000,
-              });
-              break;
-
-            case 404:
-              toast.add({
-                severity: "error",
-                summary: t("shared.error"),
-                detail: t("requestErrors.status.404"),
-                life: 3000,
-              });
-              break;
-
-            default:
-              toast.add({
-                severity: "error",
-                summary: t("shared.error"),
-                detail: t("requestErrors.network"),
-                life: 3000,
-              });
-              break;
-          }
+          statusHandler(resp.status, () => {
+            execute();
+          });
         })
         .catch(() => {
           toast.add({
@@ -299,6 +273,29 @@ function showNewItemDialog() {
     },
     onClose: (opt) => {
       // Inserted item id => opt.data.id
+      if (opt?.type === "config-close") {
+        execute();
+      }
+    },
+  });
+}
+
+function showEditItemDialog(item: ImageItem) {
+  dialog.open(NewImageItem, {
+    props: {
+      header: "编辑条目",
+      modal: true,
+      style: {
+        width: "50rem",
+        maxWidth: "100vw",
+      },
+    },
+    data: {
+      edit: true,
+      editItems: [item],
+    },
+    onClose: (opt) => {
+      // Updated item id => opt.data.id
       if (opt?.type === "config-close") {
         execute();
       }

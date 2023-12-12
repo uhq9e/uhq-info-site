@@ -1,1 +1,0 @@
-const e={title:"若千人的末路",description:"存放一些点子和yuyuyu图的地方。"},s={error:"错误",confirmed:"已确认"},t={network:"网络错误",status:{401:"需要认证",403:"没有权限",404:"无此条目",500:"内部错误"}},o={sessionExpired:"会话失效",validationSuccess:"验证通过",wrongToken:"Token有误",itemDeleted:"条目已删除"},r={site:e,shared:s,requestErrors:t,messages:o},n=()=>({legacy:!1,locale:"zh",messages:{zh:r}});export{n as default};

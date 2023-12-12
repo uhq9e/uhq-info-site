@@ -4,7 +4,7 @@
       class="h:calc(100vh-5.5rem) flex flex:row r:6 overflow:hidden shadow-2"
     >
       <div
-        class="w:100% w:50%@sm p:32@>sm text:center text:left@sm flex align-items:center justify-content:center justify-content:start@sm z:1"
+        class="w:100% w:50%@sm p:32@>sm text:center text:left@sm flex align-items:center justify-content:center@<sm justify-content:start@>sm z:1"
       >
         <section class="py:32 w:full bd:blur(10)@<md">
           <div class="f:3rem f:bold mb:16">

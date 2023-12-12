@@ -9,18 +9,7 @@
       <div>
         <div class="f:0.8em mb:4">社交链接</div>
         <div class="flex flex:row gap:4">
-          <NuxtLink
-            v-for="(url, i) in author.urls"
-            :key="i"
-            :href="url"
-            target="_blank"
-          >
-            <Tag
-              :value="urlToHostname(url)"
-              class="p-ripple capitalize"
-              v-ripple
-            />
-          </NuxtLink>
+          <AuthorLinkTag v-for="url in author.urls" :url="url" />
         </div>
       </div>
     </OverlayPanel>

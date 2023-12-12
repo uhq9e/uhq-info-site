@@ -22,35 +22,38 @@
         :pt="{ container: { class: 'w:full' } }"
       >
         <template #chip="slotProps">
-          <div class="flex flex:row align-items:center gap:4">
-            <Tag
-              ><img
-                :src="urlToFavicon(slotProps.value) ?? 'favicon.ico'"
-                alt="favicon"
-                class="h:16 aspect:1/1 mr:2"
-              />{{ urlToHostname(slotProps.value) ?? "unknown" }}</Tag
-            >
-          </div>
+          <AuthorLinkTag :url="slotProps.value" />
         </template>
       </Chips>
       <small class="p-error">{{ errors.urls }}</small>
     </div>
-    <Button type="submit" label="添加" :loading="uploading" />
+    <Button
+      type="submit"
+      :label="!isEdit ? '添加' : '修改'"
+      :loading="uploading"
+    />
   </form>
 </template>
 
 <script setup lang="ts">
 import type { DynamicDialogInstance } from "primevue/dynamicdialogoptions";
 
-import * as yup from "yup";
+import { toTypedSchema } from "@vee-validate/zod";
+import { z } from "zod";
 
 const dialogRef = inject<Ref<DynamicDialogInstance>>("dialogRef");
+const isEdit = (dialogRef?.value?.data?.edit ?? false) as boolean;
+const item: Author | undefined = dialogRef?.value?.data?.item;
+
+if (isEdit && !item) {
+  throw Error("编辑条目请传入item");
+}
 
 const { errors, defineField, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
-    yup.object({
-      name: yup.string().required(),
-      urls: yup.array().of(yup.string()).required().default([]),
+    z.object({
+      name: z.string(),
+      urls: z.array(z.string()).min(1).default([]),
     })
   ),
 });
@@ -58,21 +61,44 @@ const { errors, defineField, handleSubmit } = useForm({
 const [name, nameAttrs] = defineField("name");
 const [urls, urlsAttrs] = defineField("urls");
 
+if (isEdit && item) {
+  name.value = item.name;
+  urls.value = item.urls;
+}
+
 const uploading = ref(false);
 
 const onSubmit = handleSubmit(async (values) => {
   uploading.value = true;
 
-  let insertedItem = await $fetch<InsertResponse<number>>("/api/authors/item", {
-    method: "POST",
-    body: {
-      name: values.name,
-      urls: values.urls,
-    },
-  });
+  if (!isEdit) {
+    let insertedItem = await $fetch<InsertResponse<number>>(
+      "/api/authors/item",
+      {
+        method: "POST",
+        body: {
+          name: values.name,
+          urls: values.urls,
+        },
+      }
+    );
+
+    dialogRef?.value.close(insertedItem);
+  } else {
+    let updatedItem = await $fetch<UpdateResponse<number>>(
+      `/api/authors/item/${item?.id}`,
+      {
+        method: "PUT",
+        body: {
+          name: values.name,
+          urls: values.urls,
+        },
+      }
+    );
+
+    dialogRef?.value.close(updatedItem);
+  }
 
   uploading.value = false;
-
-  dialogRef?.value.close(insertedItem);
 });
 </script>

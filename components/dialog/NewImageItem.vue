@@ -1,253 +1,323 @@
 <template>
-  <form @submit="onSubmit" class="flex flex:col gap:16">
-    <div class="flex flex:col gap:4">
-      <label for="date" class="f:bold">选择日期</label>
-      <Calendar
-        input-id="date"
-        v-model="date"
-        v-bind="dateAttrs"
-        :input-class="{ 'p-invalid': errors.date }"
-        date-format="yy-mm-dd"
-        class="w:full"
+  <div class="flex flex:col gap:8">
+    <Dialog
+      v-model:visible="importDialogVisible"
+      header="导入"
+      :pt="{ root: { class: 'w:50rem max-w:100vw' } }"
+      modal
+    >
+      <Textarea
+        v-model="importJson"
+        v-bind="importJsonAttrs"
+        :class="[{ 'p-invalid': errors.json }, 'w:full h:35vh']"
       />
-      <small class="p-error">{{ errors.date }}</small>
-    </div>
-    <div class="flex flex:col gap:4">
-      <label for="author" class="f:bold">选择作者</label>
-      <div class="flex flex:row gap:4 w:full">
-        <AutoComplete
-          v-model="author"
-          v-bind="authorAttrs"
-          option-label="name"
-          input-id="author"
-          placeholder="输入名称查找作者"
-          :suggestions="filteredAuthors"
-          :loading="pending"
-          :disabled="pending"
-          :input-class="['w:full', { 'p-invalid': errors.author }]"
-          class="flex-grow:1"
-          @complete="search"
+      <small class="p-error">{{ errors.json }}</small>
+      <template #footer>
+        <Button
+          label="导入"
+          icon="pi pi-download"
+          @click="onImportDialogSubmit"
         />
-        <Button @click="addAuthor" icon="pi pi-plus" />
-      </div>
-      <small class="p-error">{{ errors.author }}</small>
-    </div>
-    <div class="flex flex:col gap:4">
-      <label for="urls" class="f:bold">原址链接</label>
-      <Chips
-        v-model="urls"
-        v-bind="urlsAttrs"
-        placeholder="输入网址后按回车添加"
-        input-id="urls"
-        :class="{ 'p-invalid': errors.urls }"
-        :pt="{ container: { class: 'w:full' } }"
+      </template>
+    </Dialog>
+    <Menubar v-if="!isEdit" :model="menuItems" />
+    <TabView
+      v-model:active-index="activeIndex"
+      :pt="{ panelContainer: { class: 'px:0' } }"
+      scrollable
+    >
+      <TabPanel
+        v-for="uploadItem in pendingUploadItems"
+        :pt="{ headerAction: { class: 'py:8' } }"
       >
-        <template #chip="slotProps">
-          <UseSocialPost :url="slotProps.value" v-slot="slotProps_">
-            <div class="flex flex:row align-items:center gap:4">
-              <Tag>
-                <img
-                  :src="urlToFavicon(slotProps.value) ?? 'favicon.ico'"
-                  alt="favicon"
-                  class="h:16 aspect:1/1 mr:2"
-                />
-                {{ slotProps_.socialPostType.key }}
-              </Tag>
-              <span>{{
-                slotProps_.socialPostType.toDisplay() || slotProps.value
-              }}</span>
-            </div>
-          </UseSocialPost>
-        </template>
-      </Chips>
-      <small class="p-error">{{ errors.urls }}</small>
-    </div>
-    <div class="flex flex:col gap:4">
-      <label for="nsfw" class="f:bold">是否为NSFW</label>
-      <Checkbox
-        input-id="nsfw"
-        v-model="nsfw"
-        v-bind="nsfwAttrs"
-        :input-class="{ 'p-invalid': errors.nsfw }"
-        :binary="true"
-      />
-      <small class="p-error">{{ errors.nsfw }}</small>
-    </div>
-    <div class="flex flex:col gap:4">
-      <Button
-        @click="addImage"
-        label="上传图片"
-        icon="pi pi-plus"
-        class="as:start"
-        :badge="images?.length.toString()"
-      />
-      <div
-        v-if="images?.length"
-        class="w:full h:150 py:8 flex flex:row gap:8 overflow-x:auto"
-      >
-        <UseObjectUrl
-          v-for="(file, i) in images"
-          :key="i"
-          v-slot="url"
-          :object="(file as File)"
-        >
-          <div
-            class="h:full r:6 aspect:1/1 bg:center bg:cover shadow-2 image-container"
-            :style="`background-image: url(${url.value})`"
-          >
-            <div
-              class="rel w:full h:full bg:#00000020 ~opacity|200ms image-actions"
+        <template #header>
+          <div class="f:bold flex flex:row flex:nowrap white-space:nowrap_*">
+            <span class="mr:4" :style="{ color: `#${uploadItem.id.slice(-6)}` }"
+              >●</span
             >
-              <Button
-                @click="removeImage(i)"
-                icon="pi pi-trash"
-                severity="danger"
-                text
-                rounded
-                size="small"
-                class="abs top:10 right:10 bg:white"
-              />
-            </div>
+            <span>条目</span>
+            <span v-if="uploading" class="ml:4">
+              <span v-if="!uploadedItems.includes(uploadItem.id)" class="f:red"
+                >上传中</span
+              >
+              <span v-else class="f:green-60">上传完毕</span>
+            </span>
           </div>
-        </UseObjectUrl>
-      </div>
-      <small class="p-error">{{ errors.images }}</small>
-    </div>
-    <Button type="submit" label="添加" :loading="uploading" />
-  </form>
+        </template>
+        <BlockUI :blocked="uploading">
+          <DialogNewImageItemBase
+            :key="uploadItem.id"
+            :initial-value="uploadItem.initialValue"
+            ref="uploadItemInstances"
+          />
+        </BlockUI>
+      </TabPanel>
+    </TabView>
+    <Button
+      @click="onSubmit"
+      :label="!isEdit ? '添加' : '修改'"
+      :loading="uploading"
+    />
+  </div>
 </template>
 
-<style scoped>
-.image-container:hover .image-actions {
-  opacity: 1;
-}
-.image-actions {
-  opacity: 0;
-}
-</style>
-
 <script setup lang="ts">
-import type { AutoCompleteCompleteEvent } from "primevue/autocomplete";
 import type { DynamicDialogInstance } from "primevue/dynamicdialogoptions";
-import { UseObjectUrl } from "@vueuse/components";
-import { formatDate, urlToFavicon } from "~/utils";
-import NewAuthor from "./NewAuthor.vue";
-import * as yup from "yup";
-
-import { useDialog } from "primevue/usedialog";
-
-const dialog = useDialog();
+import type { MenuItem } from "primevue/menuitem";
+import type { ImportImageItem } from "~/utils/misc";
+import { v4 } from "uuid";
+import { toTypedSchema } from "@vee-validate/zod";
+import { z } from "zod";
+import NewImageItemBase from "./NewImageItemBase.vue";
+import AuthorLinkType from "~/utils/authorLinkType";
+import { ImportImageItemSchema, ImportImageItemsSchema } from "~/utils/misc";
+import type { PartialDeep } from "type-fest";
 
 const dialogRef = inject<Ref<DynamicDialogInstance>>("dialogRef");
+const isEdit = (dialogRef?.value?.data?.edit ?? false) as boolean;
+const editItems: ImageItem[] | undefined = dialogRef?.value?.data?.editItems;
 
-const { data, pending, error, execute } = useFetch<ListResponse<Author>>(
-  "/api/authors/all",
-  {
-    server: false,
-  }
+const authorList = useState<Author[] | undefined>(
+  "new-image-item-author-list",
+  () => undefined
+);
+const authorListPending = useState(
+  "new-image-item-author-list-pending",
+  () => false
 );
 
-const { errors, defineField, handleSubmit } = useForm({
+if (!authorList.value) {
+  execute();
+}
+
+if (isEdit && editItems === undefined) {
+  throw Error("编辑条目请传入items");
+}
+
+const { defineField, handleSubmit, errors } = useForm({
   validationSchema: toTypedSchema(
-    yup.object({
-      date: yup.date().required().default(new Date()),
-      author: yup.object<Author>().required(),
-      urls: yup.array().of(yup.string().url()).default([]),
-      nsfw: yup.bool().required().default(false),
-      images: yup.array().of(yup.mixed()).default([]),
+    z.object({
+      json: z.string().refine((v) => {
+        try {
+          return ImportImageItemsSchema.safeParse(JSON.parse(v)).success;
+        } catch {
+          return false;
+        }
+      }),
     })
   ),
 });
 
-const [date, dateAttrs] = defineField("date");
-const [author, authorAttrs] = defineField("author");
-const [urls, urlsAttrs] = defineField("urls");
-const [nsfw, nsfwAttrs] = defineField("nsfw");
-const [images, imagesAttrs] = defineField("images");
+const [importJson, importJsonAttrs] = defineField("json");
 
-const filteredAuthors = ref<Author[]>([]);
+interface PendingUploadItem {
+  id: string;
+  initialValue?: PartialDeep<UploadItem>;
+}
+
+const menuItems = ref<MenuItem[]>([
+  {
+    icon: "pi pi-plus",
+    label: "添加",
+    command: newTab,
+  },
+  {
+    icon: "pi pi-minus",
+    label: "删除",
+    command: () => removeTab(activeIndex.value),
+    disabled: () => pendingUploadItems.value.length <= 1,
+  },
+  {
+    icon: "pi pi-download",
+    label: "导入",
+    command: () => (importDialogVisible.value = true),
+  },
+]);
 const uploading = ref(false);
+const pendingUploadItems = ref<PendingUploadItem[]>([]);
+const uploadedItems = ref<string[]>([]);
+const uploadItemInstances = ref<InstanceType<typeof NewImageItemBase>[]>([]);
+const activeIndex = ref(0);
+const importDialogVisible = ref(false);
 
-function search(event: AutoCompleteCompleteEvent) {
-  if (data.value) {
-    if (event.query.trim().length) {
-      filteredAuthors.value = data.value.items.filter((author) => {
-        return author.name.toLowerCase().includes(event.query.toLowerCase());
-      });
-    } else {
-      filteredAuthors.value = [...data.value.items];
-    }
-  }
-}
+const editIds = ref<number[]>([]);
 
-function addImage() {
-  let input = document.createElement("input");
-  input.type = "file";
-  input.accept = "image/*";
-  input.multiple = true;
-  input.onchange = (e) => {
-    const files = (e?.target as HTMLInputElement)?.files;
-    if (files) {
-      images.value = [...(images.value ?? []), ...files];
-    }
-  };
-  input.click();
-}
-
-function removeImage(index: number) {
-  images.value = images.value?.filter((_, i) => i !== index);
-}
-
-const onSubmit = handleSubmit(async (values) => {
-  uploading.value = true;
-
-  let requests: Promise<InsertResponse<string>>[] = [];
-  for (const file of values.images) {
-    if (file) {
-      const f = file as File;
-      requests.push(
-        $fetch<InsertResponse<string>>("/api/storage/item", {
-          method: "POST",
-          body: f,
-        })
-      );
-    }
-  }
-
-  let imageIds = (await Promise.all(requests)).map((v) => v.id);
-
-  let insertedItem = await $fetch<InsertResponse<number>>("/api/images/item", {
-    method: "POST",
-    body: {
-      author_id: (values.author as Author).id,
-      local_file_ids: imageIds,
-      urls: values.urls,
-      date: formatDate(values.date),
-      nsfw: values.nsfw,
-    },
-  });
-
-  uploading.value = false;
-
-  dialogRef?.value.close(insertedItem);
-});
-
-function addAuthor() {
-  dialog.open(NewAuthor, {
-    props: {
-      header: "添加作者",
-      modal: true,
-      style: {
-        width: "50rem",
-        maxWidth: "100vw",
+if (isEdit && editItems) {
+  for (const item of editItems) {
+    editIds.value = [...editIds.value, item.id];
+    pendingUploadItems.value = [
+      ...pendingUploadItems.value,
+      {
+        id: v4(),
+        initialValue: {
+          date: new Date(item.date),
+          author: item.author,
+          urls: item.urls,
+          nsfw: item.nsfw,
+          images: [],
+        },
       },
-    },
-    onClose: (opt) => {
-      // Inserted item id => opt.data.id
-      if (opt?.type === "config-close") {
-        execute();
-      }
-    },
-  });
+    ];
+  }
+} else {
+  pendingUploadItems.value = [{ id: v4() }];
 }
+
+async function execute() {
+  authorListPending.value = true;
+  authorList.value = (
+    await $fetch<ListResponse<Author>>("/api/authors/all")
+  ).items;
+  authorListPending.value = false;
+}
+
+function newTab() {
+  pendingUploadItems.value.splice(activeIndex.value + 1, 0, { id: v4() });
+  activeIndex.value++;
+}
+
+function removeTab(index: number) {
+  if (activeIndex.value === pendingUploadItems.value.length - 1) {
+    activeIndex.value--;
+  }
+  pendingUploadItems.value = pendingUploadItems.value.filter(
+    (_, i) => i !== index
+  );
+}
+
+const onSubmit = async () => {
+  const validationResults = await Promise.all(
+    uploadItemInstances.value.map((v) => v.form.validate())
+  );
+
+  for (const entry of Object.entries(validationResults)) {
+    if (!entry[1].valid) {
+      activeIndex.value = parseInt(entry[0]);
+      return;
+    }
+  }
+
+  const itemValues = validationResults.map((v) => v.values);
+
+  const returnItems: (InsertResponse<number> | UpdateResponse<number>)[] = [];
+
+  uploading.value = true;
+  for (const i in itemValues) {
+    const pendingItem = pendingUploadItems.value[i];
+
+    const values = itemValues[i];
+    if (!values) continue;
+
+    if (!isEdit) {
+      let requests: Promise<InsertResponse<string>>[] = [];
+      for (const file of values.images) {
+        if (file.type === "local") {
+          requests.push(
+            $fetch<InsertResponse<string>>("/api/storage/image/item", {
+              method: "POST",
+              body: file.file,
+            })
+          );
+        } else {
+          requests.push(
+            $fetch<InsertResponse<string>>("/api/storage/image/item_from_web", {
+              method: "POST",
+              body: file.url,
+            })
+          );
+        }
+      }
+
+      let imageIds = (await Promise.all(requests)).map((v) => v.id);
+
+      let insertedItem = await $fetch<InsertResponse<number>>(
+        "/api/images/item",
+        {
+          method: "POST",
+          body: {
+            author_id: (values.author as Author).id,
+            local_file_ids: imageIds,
+            urls: values.urls,
+            date: formatDate(values.date),
+            nsfw: values.nsfw,
+          },
+        }
+      );
+
+      uploadedItems.value = [...uploadedItems.value, pendingItem.id];
+      returnItems.push(insertedItem);
+    } else {
+      let updatedItem = await $fetch<UpdateResponse<number>>(
+        `/api/images/item/${editIds.value[i]}`,
+        {
+          method: "PUT",
+          body: {
+            author_id: (values.author as Author).id,
+            urls: values.urls,
+            date: formatDate(values.date),
+            nsfw: values.nsfw,
+          },
+        }
+      );
+
+      uploadedItems.value = [...uploadedItems.value, pendingItem.id];
+      returnItems.push(updatedItem);
+    }
+  }
+
+  dialogRef?.value.close(returnItems);
+  uploading.value = false;
+};
+
+const onImportDialogSubmit = handleSubmit((values) => {
+  const importItemsOrig: ImportImageItem[] = JSON.parse(values.json);
+
+  let importItems: ImportImageItem[];
+
+  try {
+    importItems = z.array(ImportImageItemSchema).parse(importItemsOrig);
+  } catch (error) {
+    throw Error("解析JSON失败");
+  }
+
+  if (importItems) {
+    pendingUploadItems.value = [];
+  }
+
+  for (const item of importItems) {
+    const matchedAuthor = authorList.value?.find((v) => {
+      return v.urls?.some((authorUrl) => {
+        const authorUrlType = AuthorLinkType.matchByUrl(authorUrl);
+        return item.authorUrls?.some((targetUrl) => {
+          const targetUrlType = AuthorLinkType.matchByUrl(targetUrl);
+          return (
+            authorUrlType.groups?.user &&
+            targetUrlType.groups?.user &&
+            authorUrlType.groups.user === targetUrlType.groups.user
+          );
+        });
+      });
+    });
+
+    pendingUploadItems.value = [
+      ...pendingUploadItems.value,
+      {
+        id: v4(),
+        initialValue: {
+          date: item.date ? new Date(item.date) : undefined,
+          author: matchedAuthor,
+          urls: item.urls,
+          nsfw: item.nsfw ?? false,
+          images: item.imageUrls?.map<WebImage>((url) => ({
+            type: "web",
+            url: url,
+          })),
+        },
+      },
+    ];
+  }
+
+  importJson.value = "";
+  importDialogVisible.value = false;
+});
 </script>

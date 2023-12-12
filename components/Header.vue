@@ -12,7 +12,7 @@
     }"
   >
     <template #start>
-      <NuxtLink to="/" :class="{ 'text-primary': isActive('/') }">
+      <NuxtLink to="/" :class="{ 'font-color:var(--primary-color)': isActive('/') }">
         <span class="f:bold">{{ t("site.title") }}</span>
       </NuxtLink>
     </template>
@@ -21,7 +21,7 @@
         v-for="item in navItems"
         :key="item.path"
         :to="item.path"
-        :class="{ 'text-primary': isActive(item.path) }"
+        :class="{ 'font-color:var(--primary-color)': isActive(item.path) }"
         >{{ item.name }}</NuxtLink
       >
     </template>

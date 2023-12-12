@@ -20,3 +20,26 @@ interface ImageItem {
   author?: Author;
   local_files: LocalFile[];
 }
+
+interface NewImageItem {
+  urls?: (string | undefined)[];
+  date: string;
+  nsfw: boolean;
+  author_id?: number;
+  local_file_ids: string[];
+}
+
+type LocalImageType = "local";
+type WebImageType = "web";
+
+interface LocalImage {
+  type: LocalImageType;
+  file: File;
+}
+
+interface WebImage {
+  type: WebImageType;
+  url: string;
+}
+
+type UploadImage = LocalImage | WebImage;
