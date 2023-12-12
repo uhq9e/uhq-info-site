@@ -52,7 +52,7 @@ import { sortMetaArrayToFormat } from "~/utils";
 import type { DataTableSortMeta } from "primevue/datatable";
 
 const pageTitle = pageTitleFormat("鱼图");
-const pageDescription = "每天收集的一些鱼图";
+const pageDescription = "每日收集鱼图";
 
 useSeoMeta({
   title: pageTitle,

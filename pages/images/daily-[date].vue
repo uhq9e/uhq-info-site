@@ -1,10 +1,14 @@
 <template>
-  <div v-if="data" class="flex flex:col">
+  <div class="flex flex:col">
     <PageTitle :value="(route.params.date as string)" show-back-button />
     <div
       class="flex flex:col w:full align-items:center as:center gap:8 general-width"
     >
-      <ImageItem v-for="item in data?.items" :item="item" class="w:full" />
+      <ImageItem
+        v-for="item in data?.items ?? []"
+        :item="item"
+        class="w:full"
+      />
     </div>
   </div>
 </template>
