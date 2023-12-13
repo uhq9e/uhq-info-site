@@ -19,13 +19,21 @@ jobs:
       - name: Zip output
         uses: vimtor/action-zip@v1.1
         with:
-          files: ./
+          files: .output
           dest: build_result.zip
       - name: Copy build_result.zip to vultr
         uses: garygrossgarten/github-action-scp@release
         with:
           local: build_result.zip
           remote: /root/frontend/build_result.zip
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+      - name: Copy ecosystem.config to vultr
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ecosystem.config.cjs
+          remote: /root/frontend/ecosystem.config.cjs
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
@@ -36,6 +44,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            rm -rf /root/frontend/build_result
-            unzip /root/frontend/build_result.zip -d /root/frontend/build_result
+            rm -rf /root/frontend/.output
+            unzip /root/frontend/build_result.zip -d /root/frontend/.output
       - run: echo "🍏 This job's status is ${{ job.status }}."
