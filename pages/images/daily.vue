@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageTitle value="鱼图" />
+    <PageTitle value="鱼图" :caption="pageDescription" />
     <section class="flex flex:col">
       <BlockUI :blocked="pending">
         <Paginator
@@ -54,7 +54,7 @@ import { sortMetaArrayToFormat } from "~/utils";
 import type { DataTableSortMeta } from "primevue/datatable";
 
 const pageTitle = pageTitleFormat("鱼图");
-const pageDescription = "每日收集鱼图";
+const pageDescription = "每日收集鱼图。由于个人喜好及人工收集难免漏图等缘故，如有遗漏属正常现象。";
 
 useSeoMeta({
   title: pageTitle,
