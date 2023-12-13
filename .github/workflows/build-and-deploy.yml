@@ -35,5 +35,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: unzip /root/frontend/build_result.zip -d /root/frontend/build_result
+          script: |
+            rm -rf /root/frontend/build_result
+            unzip /root/frontend/build_result.zip -d /root/frontend/build_result
       - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import "@master/css";
-import pkg from "@master/css";
+import * as pkg from "@master/css";
 const { init, Style } = pkg;
 
 Style.extend("classes", {

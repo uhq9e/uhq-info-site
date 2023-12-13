@@ -7,12 +7,17 @@
           background: 'rgba(0, 0, 0, 0.02)',
           padding: '0 1.25rem',
           zIndex: 999,
+          border: 'none',
         },
+        class: 'shadow-2',
       },
     }"
   >
     <template #start>
-      <NuxtLink to="/" :class="{ 'font-color:var(--primary-color)': isActive('/') }">
+      <NuxtLink
+        to="/"
+        :class="{ 'font-color:var(--primary-color)': isActive('/') }"
+      >
         <span class="f:bold">{{ t("site.title") }}</span>
       </NuxtLink>
     </template>
