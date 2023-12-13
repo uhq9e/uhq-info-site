@@ -5,7 +5,7 @@ import { defineHeadPlugin } from '@unhead/shared';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION, useRouter as useRouter$1, useRoute as useRoute$1 } from 'vue-router';
 import isHTTPS from 'is-https';
 import { ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttrs, ssrRenderSuspense, ssrRenderVNode } from 'vue/server-renderer';
-import { Style, init } from '@master/css';
+import pkg from '@master/css';
 import 'node:http';
 import 'node:https';
 import 'fs';
@@ -589,18 +589,18 @@ function useState(...args) {
   if (typeof args[0] !== "string") {
     args.unshift(autoKey);
   }
-  const [_key, init2] = args;
+  const [_key, init] = args;
   if (!_key || typeof _key !== "string") {
     throw new TypeError("[nuxt] [useState] key must be a string: " + _key);
   }
-  if (init2 !== void 0 && typeof init2 !== "function") {
-    throw new Error("[nuxt] [useState] init must be a function: " + init2);
+  if (init !== void 0 && typeof init !== "function") {
+    throw new Error("[nuxt] [useState] init must be a function: " + init);
   }
   const key = useStateKeyPrefix + _key;
   const nuxt = /* @__PURE__ */ useNuxtApp();
   const state = toRef$1(nuxt.payload.state, key);
-  if (state.value === void 0 && init2) {
-    const initialValue = init2();
+  if (state.value === void 0 && init) {
+    const initialValue = init();
     if (isRef(initialValue)) {
       nuxt.payload.state[key] = initialValue;
       return initialValue;
@@ -961,7 +961,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/daily-_date_-aedfa6cc.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/daily-_date_-25dc487c.mjs').then((m) => m.default || m)
   },
   {
     name: "images-daily",
@@ -969,7 +969,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/daily-3b0dbeeb.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/daily-ba7836e2.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -988,7 +988,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/authors-d295dbbc.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/authors-00c361cf.mjs').then((m) => m.default || m)
       },
       {
         name: "manage-images",
@@ -996,7 +996,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/images-b35ef855.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/images-b69efaee.mjs').then((m) => m.default || m)
       },
       {
         name: "manage",
@@ -1011,7 +1011,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/manage-e31905c7.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/manage-9c5e5b89.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1337,7 +1337,7 @@ const LazyTieredMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nux
 const LazyChart = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/chart.esm-6a255faa.mjs').then((r) => r.default));
 const LazyMessage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/message.esm-89fd2d8b.mjs').then((r) => r.default));
 const LazyInlineMessage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inlinemessage.esm-51a46112.mjs').then((r) => r.default));
-const LazyToast = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/toast.esm-1dd156e2.mjs').then((r) => r.default));
+const LazyToast = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/toast.esm-2784fb5b.mjs').then((r) => r.default));
 const LazyCarousel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/carousel.esm-30905ebc.mjs').then((r) => r.default));
 const LazyGalleria = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/galleria.esm-bac9a1e1.mjs').then((r) => r.default));
 const LazyImage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/image.esm-ee4ff0db.mjs').then((r) => r.default));
@@ -11874,7 +11874,7 @@ const _wrapIf = (component, props, slots) => {
     return props ? h(component, props, slots) : (_a = slots.default) == null ? void 0 : _a.call(slots);
   } };
 };
-const __nuxt_component_5 = /* @__PURE__ */ defineComponent({
+const __nuxt_component_4 = /* @__PURE__ */ defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
@@ -11966,6 +11966,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "app",
   __ssrInlineRender: true,
   setup(__props) {
+    const { init, Style } = pkg;
     Style.extend("classes", {
       "general-width": "max-w:40rem",
       "text-outline": "text-shadow:-1|-1|0|gray-84,1|-1|0|gray-84,-1|1|0|gray-84,1|1|0|gray-84"
@@ -11973,8 +11974,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     init();
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Header = _sfc_main$3;
-      const _component_NuxtPage = __nuxt_component_5;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app-container" }, _attrs))} data-v-0178f7fc>`);
+      const _component_NuxtPage = __nuxt_component_4;
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app-container" }, _attrs))} data-v-90fc82ce>`);
       _push(ssrRenderComponent(_component_Header, { class: "app-header" }, null, _parent));
       _push(ssrRenderComponent(_component_NuxtPage, { class: "app-page" }, null, _parent));
       _push(`</div>`);
@@ -11994,7 +11995,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-0178f7fc"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-90fc82ce"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,
@@ -12102,5 +12103,5 @@ let entry;
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { ConfirmationEventBus as A, BaseStyle as B, ConnectedOverlayScrollHandler as C, DomHandler as D, DynamicDialogEventBus as E, FilterMatchMode as F, Tooltip as G, ObjectUtils as O, Ripple as R, ToastEventBus as T, UniqueComponentId as U, ZIndexUtils as Z, _export_sfc as _, __nuxt_component_0 as a, useRouter as b, createError as c, useI18n as d, entry$1 as default, useConfirm as e, useToast as f, useDialog as g, useObjectUrl as h, toValue as i, tryOnScopeDispose as j, useState as k, asyncDataDefaults as l, useNuxtApp as m, fetchDefaults as n, useRequestFetch as o, useLocalStorage as p, __nuxt_component_5 as q, injectHead as r, resolveUnrefHeadInput as s, toRef as t, useRoute as u, script$2 as v, FocusTrap as w, primebus as x, FilterService as y, FilterOperator as z };
+export { ConfirmationEventBus as A, BaseStyle as B, ConnectedOverlayScrollHandler as C, DomHandler as D, DynamicDialogEventBus as E, FilterMatchMode as F, Tooltip as G, ObjectUtils as O, Ripple as R, ToastEventBus as T, UniqueComponentId as U, ZIndexUtils as Z, _export_sfc as _, __nuxt_component_0 as a, useRouter as b, createError as c, useI18n as d, entry$1 as default, useConfirm as e, useToast as f, useDialog as g, useObjectUrl as h, toValue as i, tryOnScopeDispose as j, useState as k, asyncDataDefaults as l, useNuxtApp as m, fetchDefaults as n, useRequestFetch as o, useLocalStorage as p, __nuxt_component_4 as q, injectHead as r, resolveUnrefHeadInput as s, toRef as t, useRoute as u, script$2 as v, FocusTrap as w, primebus as x, FilterService as y, FilterOperator as z };
 //# sourceMappingURL=server.mjs.map

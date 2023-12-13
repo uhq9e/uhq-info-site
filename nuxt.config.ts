@@ -58,6 +58,10 @@ export default defineNuxtConfig({
   hooks: {
     "build:manifest": (manifest) => {
       for (const key in manifest) {
+        // or other logic
+        manifest[key].dynamicImports = [];
+      }
+      for (const key in manifest) {
         const file = manifest[key];
 
         if (file.assets) {
