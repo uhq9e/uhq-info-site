@@ -26,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import Button from "primevue/button";
+
 const router = useRouter();
 
 withDefaults(

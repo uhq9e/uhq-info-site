@@ -1,4 +1,4 @@
-import { hasInjectionContext, getCurrentInstance, version, unref, inject, toRef as toRef$1, isRef, defineComponent, h, onUnmounted, getCurrentScope, onScopeDispose, readonly, customRef, ref, watch, mergeProps, useSSRContext, Suspense, nextTick, Transition, computed, resolveComponent, Fragment, shallowRef, withCtx, createVNode, toDisplayString as toDisplayString$1, createTextVNode, openBlock, createBlock, renderList, provide, shallowReactive, createApp, effectScope, reactive, onMounted, createElementBlock, createElementVNode, renderSlot, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, isReadonly, Text, defineAsyncComponent, isShallow, isReactive, toRaw, markRaw } from 'vue';
+import { hasInjectionContext, getCurrentInstance, version, unref, inject, toRef as toRef$1, isRef, defineComponent, h, onUnmounted, getCurrentScope, onScopeDispose, readonly, customRef, ref, watch, mergeProps, useSSRContext, Suspense, nextTick, Transition, computed, resolveComponent, Fragment, shallowRef, withCtx, createVNode, toDisplayString as toDisplayString$1, createTextVNode, openBlock, createBlock, renderList, provide, shallowReactive, createApp, effectScope, reactive, onMounted, createElementBlock, createElementVNode, renderSlot, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, isReadonly, Text, defineAsyncComponent, isShallow, isReactive, toRaw } from 'vue';
 import { d as useRuntimeConfig$1, m as createError$1, n as defu, $ as $fetch, o as hasProtocol, p as parseURL, q as parseQuery$1, r as createHooks, w as withTrailingSlash$1, t as withoutTrailingSlash$1, v as withQuery, x as isScriptProtocol, y as joinURL, z as sanitizeStatusCode, A as ofetch, B as isEqual, C as getRequestHeaders } from '../nitro/node-server.mjs';
 import { getActiveHead } from 'unhead';
 import { defineHeadPlugin } from '@unhead/shared';
@@ -961,7 +961,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/daily-_date_-25dc487c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/daily-_date_-c107979c.mjs').then((m) => m.default || m)
   },
   {
     name: "images-daily",
@@ -969,7 +969,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/daily-ba7836e2.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/daily-0eacd604.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -977,7 +977,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-8afad976.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-08e7ed7e.mjs').then((m) => m.default || m)
   },
   {
     path: "/manage",
@@ -988,7 +988,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/authors-00c361cf.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/authors-13ca97ef.mjs').then((m) => m.default || m)
       },
       {
         name: "manage-images",
@@ -996,7 +996,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/images-b69efaee.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/images-1b90fb5f.mjs').then((m) => m.default || m)
       },
       {
         name: "manage",
@@ -1011,7 +1011,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/manage-9c5e5b89.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/manage-60c7421f.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1259,200 +1259,8 @@ const revive_payload_server_NctWloxNoh = /* @__PURE__ */ defineNuxtPlugin({
     }
   }
 });
-const LazyAutoComplete = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/autocomplete.esm-eb5e5f1d.mjs').then((r) => r.default));
-const LazyCalendar = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/calendar.esm-710a5529.mjs').then((r) => r.default));
-const LazyCascadeSelect = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/cascadeselect.esm-4685d5ec.mjs').then((r) => r.default));
-const LazyCheckbox = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/checkbox.esm-f7aeaa36.mjs').then((r) => r.default));
-const LazyChips = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/chips.esm-6d2cd9fb.mjs').then((r) => r.default));
-const LazyColorPicker = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/colorpicker.esm-74b95aea.mjs').then((r) => r.default));
-const LazyDropdown = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dropdown.esm-5e9a1388.mjs').then(function(n) {
-  return n.d;
-}).then((r) => r.default));
-const LazyEditor = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/editor.esm-b29f7a6d.mjs').then((r) => r.default));
-const LazyInputMask = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputmask.esm-ca52eebf.mjs').then((r) => r.default));
-const LazyInputNumber = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputnumber.esm-3ad590f7.mjs').then((r) => r.default));
-const LazyInputSwitch = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputswitch.esm-4827c09e.mjs').then((r) => r.default));
-const LazyInputText = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inputtext.esm-f33fbeb4.mjs').then((r) => r.default));
-const LazyKnob = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/knob.esm-6a1b0b99.mjs').then((r) => r.default));
-const LazyListbox = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/listbox.esm-aa21ccdd.mjs').then((r) => r.default));
-const LazyMultiSelect = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/multiselect.esm-017e6ab5.mjs').then((r) => r.default));
-const LazyPassword = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/password.esm-87d8f421.mjs').then((r) => r.default));
-const LazyRadioButton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/radiobutton.esm-cd7b47ec.mjs').then((r) => r.default));
-const LazyRating = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/rating.esm-c2b89b26.mjs').then((r) => r.default));
-const LazySelectButton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/selectbutton.esm-b55b6494.mjs').then((r) => r.default));
-const LazySlider = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/slider.esm-b612dd8e.mjs').then((r) => r.default));
-const LazyTextarea = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/textarea.esm-671fb4ae.mjs').then((r) => r.default));
-const LazyToggleButton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/togglebutton.esm-54f84b13.mjs').then((r) => r.default));
-const LazyTreeSelect = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/treeselect.esm-79b6643f.mjs').then((r) => r.default));
-const LazyTriStateCheckbox = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tristatecheckbox.esm-596a0174.mjs').then((r) => r.default));
-const LazyButton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/button.esm-ecbaff79.mjs').then((r) => r.default));
-const LazySpeedDial = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/speeddial.esm-c1a8fdad.mjs').then((r) => r.default));
-const LazySplitButton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/splitbutton.esm-ab25cdba.mjs').then((r) => r.default));
-const LazyColumn = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/column.esm-448b01a0.mjs').then((r) => r.default));
-const LazyRow = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/row.esm-56256f61.mjs').then((r) => r.default));
-const LazyColumnGroup = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/columngroup.esm-bb2ef589.mjs').then((r) => r.default));
-const LazyDataTable = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/datatable.esm-e2942884.mjs').then((r) => r.default));
-const LazyDataView = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dataview.esm-abbd30c4.mjs').then((r) => r.default));
-const LazyDataViewLayoutOptions = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dataviewlayoutoptions.esm-6c53707d.mjs').then((r) => r.default));
-const LazyOrderList = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/orderlist.esm-86eb93ed.mjs').then((r) => r.default));
-const LazyOrganizationChart = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/organizationchart.esm-8260c68c.mjs').then((r) => r.default));
-const LazyPaginator = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/paginator.esm-bb411448.mjs').then((r) => r.default));
-const LazyPickList = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/picklist.esm-bc452ddd.mjs').then((r) => r.default));
-const LazyTree = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tree.esm-450e9aa6.mjs').then((r) => r.default));
-const LazyTreeTable = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/treetable.esm-b3f4f633.mjs').then((r) => r.default));
-const LazyTimeline = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/timeline.esm-15a73514.mjs').then((r) => r.default));
-const LazyVirtualScroller = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/virtualscroller.esm-a1fbc95c.mjs').then((r) => r.default));
-const LazyAccordion = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/accordion.esm-0c9627f2.mjs').then((r) => r.default));
-const LazyAccordionTab = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/accordiontab.esm-daab6a2b.mjs').then((r) => r.default));
-const LazyCard = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/card.esm-f1ed36d9.mjs').then((r) => r.default));
-const LazyDeferredContent = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/deferredcontent.esm-3e90b328.mjs').then((r) => r.default));
-const LazyDivider = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/divider.esm-300fdc74.mjs').then((r) => r.default));
-const LazyFieldset = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/fieldset.esm-65e72e03.mjs').then((r) => r.default));
-const LazyPanel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/panel.esm-3c01e7c1.mjs').then((r) => r.default));
-const LazyScrollPanel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/scrollpanel.esm-56b4d745.mjs').then((r) => r.default));
-const LazySplitter = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/splitter.esm-205e05e2.mjs').then((r) => r.default));
-const LazySplitterPanel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/splitterpanel.esm-b20e6106.mjs').then((r) => r.default));
-const LazyTabView = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tabview.esm-369e3ede.mjs').then((r) => r.default));
-const LazyTabPanel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tabpanel.esm-3d7ab917.mjs').then((r) => r.default));
-const LazyToolbar = /* @__PURE__ */ defineAsyncComponent(() => Promise.resolve().then(function() {
-  return toolbar_esm;
-}).then((r) => r.default));
-const LazyConfirmDialog = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/confirmdialog.esm-091adbf2.mjs').then((r) => r.default));
-const LazyConfirmPopup = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/confirmpopup.esm-56716533.mjs').then((r) => r.default));
-const LazyDialog = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dialog.esm-bf442840.mjs').then((r) => r.default));
-const LazyDynamicDialog = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dynamicdialog.esm-c5fe16a7.mjs').then((r) => r.default));
-const LazyOverlayPanel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/overlaypanel.esm-40c0358a.mjs').then((r) => r.default));
-const LazySidebar = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/sidebar.esm-f641ec77.mjs').then((r) => r.default));
-const LazyFileUpload = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/fileupload.esm-be5f225e.mjs').then((r) => r.default));
-const LazyBreadcrumb = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/breadcrumb.esm-165b1d58.mjs').then((r) => r.default));
-const LazyContextMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/contextmenu.esm-f286597b.mjs').then((r) => r.default));
-const LazyDock = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/dock.esm-655208f8.mjs').then((r) => r.default));
-const LazyMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/menu.esm-1927a622.mjs').then((r) => r.default));
-const LazyMenubar = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/menubar.esm-4d5e70e3.mjs').then((r) => r.default));
-const LazyMegaMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/megamenu.esm-ca457c93.mjs').then((r) => r.default));
-const LazyPanelMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/panelmenu.esm-d0d31864.mjs').then((r) => r.default));
-const LazySteps = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/steps.esm-eba68cb8.mjs').then((r) => r.default));
-const LazyTabMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tabmenu.esm-17faa331.mjs').then((r) => r.default));
-const LazyTieredMenu = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tieredmenu.esm-36fa2839.mjs').then((r) => r.default));
-const LazyChart = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/chart.esm-6a255faa.mjs').then((r) => r.default));
-const LazyMessage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/message.esm-89fd2d8b.mjs').then((r) => r.default));
-const LazyInlineMessage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inlinemessage.esm-51a46112.mjs').then((r) => r.default));
-const LazyToast = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/toast.esm-2784fb5b.mjs').then((r) => r.default));
-const LazyCarousel = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/carousel.esm-30905ebc.mjs').then((r) => r.default));
-const LazyGalleria = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/galleria.esm-bac9a1e1.mjs').then((r) => r.default));
-const LazyImage = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/image.esm-ee4ff0db.mjs').then((r) => r.default));
-const LazyAvatar = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/avatar.esm-070bcc6d.mjs').then((r) => r.default));
-const LazyAvatarGroup = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/avatargroup.esm-50ed2dc2.mjs').then((r) => r.default));
-const LazyBadge = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/badge.esm-c4a594dc.mjs').then((r) => r.default));
-const LazyBlockUI = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/blockui.esm-dd15814f.mjs').then((r) => r.default));
-const LazyChip = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/chip.esm-9e9b8203.mjs').then((r) => r.default));
-const LazyInplace = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/inplace.esm-a4bce7ca.mjs').then((r) => r.default));
-const LazyScrollTop = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/scrolltop.esm-a07da07e.mjs').then((r) => r.default));
-const LazySkeleton = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/skeleton.esm-e4bad4d0.mjs').then((r) => r.default));
-const LazyProgressBar = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/progressbar.esm-0c6641b9.mjs').then((r) => r.default));
-const LazyProgressSpinner = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/progressspinner.esm-522a228e.mjs').then((r) => r.default));
-const LazyTag = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/tag.esm-a59af12d.mjs').then((r) => r.default));
-const LazyTerminal = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/terminal.esm-69a31400.mjs').then((r) => r.default));
-const lazyGlobalComponents = [
-  ["AutoComplete", LazyAutoComplete],
-  ["Calendar", LazyCalendar],
-  ["CascadeSelect", LazyCascadeSelect],
-  ["Checkbox", LazyCheckbox],
-  ["Chips", LazyChips],
-  ["ColorPicker", LazyColorPicker],
-  ["Dropdown", LazyDropdown],
-  ["Editor", LazyEditor],
-  ["InputMask", LazyInputMask],
-  ["InputNumber", LazyInputNumber],
-  ["InputSwitch", LazyInputSwitch],
-  ["InputText", LazyInputText],
-  ["Knob", LazyKnob],
-  ["Listbox", LazyListbox],
-  ["MultiSelect", LazyMultiSelect],
-  ["Password", LazyPassword],
-  ["RadioButton", LazyRadioButton],
-  ["Rating", LazyRating],
-  ["SelectButton", LazySelectButton],
-  ["Slider", LazySlider],
-  ["Textarea", LazyTextarea],
-  ["ToggleButton", LazyToggleButton],
-  ["TreeSelect", LazyTreeSelect],
-  ["TriStateCheckbox", LazyTriStateCheckbox],
-  ["Button", LazyButton],
-  ["SpeedDial", LazySpeedDial],
-  ["SplitButton", LazySplitButton],
-  ["Column", LazyColumn],
-  ["Row", LazyRow],
-  ["ColumnGroup", LazyColumnGroup],
-  ["DataTable", LazyDataTable],
-  ["DataView", LazyDataView],
-  ["DataViewLayoutOptions", LazyDataViewLayoutOptions],
-  ["OrderList", LazyOrderList],
-  ["OrganizationChart", LazyOrganizationChart],
-  ["Paginator", LazyPaginator],
-  ["PickList", LazyPickList],
-  ["Tree", LazyTree],
-  ["TreeTable", LazyTreeTable],
-  ["Timeline", LazyTimeline],
-  ["VirtualScroller", LazyVirtualScroller],
-  ["Accordion", LazyAccordion],
-  ["AccordionTab", LazyAccordionTab],
-  ["Card", LazyCard],
-  ["DeferredContent", LazyDeferredContent],
-  ["Divider", LazyDivider],
-  ["Fieldset", LazyFieldset],
-  ["Panel", LazyPanel],
-  ["ScrollPanel", LazyScrollPanel],
-  ["Splitter", LazySplitter],
-  ["SplitterPanel", LazySplitterPanel],
-  ["TabView", LazyTabView],
-  ["TabPanel", LazyTabPanel],
-  ["Toolbar", LazyToolbar],
-  ["ConfirmDialog", LazyConfirmDialog],
-  ["ConfirmPopup", LazyConfirmPopup],
-  ["Dialog", LazyDialog],
-  ["DynamicDialog", LazyDynamicDialog],
-  ["OverlayPanel", LazyOverlayPanel],
-  ["Sidebar", LazySidebar],
-  ["FileUpload", LazyFileUpload],
-  ["Breadcrumb", LazyBreadcrumb],
-  ["ContextMenu", LazyContextMenu],
-  ["Dock", LazyDock],
-  ["Menu", LazyMenu],
-  ["Menubar", LazyMenubar],
-  ["MegaMenu", LazyMegaMenu],
-  ["PanelMenu", LazyPanelMenu],
-  ["Steps", LazySteps],
-  ["TabMenu", LazyTabMenu],
-  ["TieredMenu", LazyTieredMenu],
-  ["Chart", LazyChart],
-  ["Message", LazyMessage],
-  ["InlineMessage", LazyInlineMessage],
-  ["Toast", LazyToast],
-  ["Carousel", LazyCarousel],
-  ["Galleria", LazyGalleria],
-  ["Image", LazyImage],
-  ["Avatar", LazyAvatar],
-  ["AvatarGroup", LazyAvatarGroup],
-  ["Badge", LazyBadge],
-  ["BlockUI", LazyBlockUI],
-  ["Chip", LazyChip],
-  ["Inplace", LazyInplace],
-  ["ScrollTop", LazyScrollTop],
-  ["Skeleton", LazySkeleton],
-  ["ProgressBar", LazyProgressBar],
-  ["ProgressSpinner", LazyProgressSpinner],
-  ["Tag", LazyTag],
-  ["Terminal", LazyTerminal]
-];
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
-  name: "nuxt:global-components",
-  setup(nuxtApp) {
-    for (const [name, component] of lazyGlobalComponents) {
-      nuxtApp.vueApp.component(name, component);
-      nuxtApp.vueApp.component("Lazy" + name, component);
-    }
-  }
+  name: "nuxt:global-components"
 });
 const composition_dhRZwM6OZG = /* @__PURE__ */ defineNuxtPlugin(() => {
 });
@@ -9062,92 +8870,6 @@ var PrimeVue = {
     app.provide(PrimeVueSymbol, PrimeVue2);
   }
 };
-var ConfirmationEventBus = primebus();
-var PrimeVueConfirmSymbol = Symbol();
-function useConfirm() {
-  var PrimeVueConfirm = inject(PrimeVueConfirmSymbol);
-  if (!PrimeVueConfirm) {
-    throw new Error("No PrimeVue Confirmation provided!");
-  }
-  return PrimeVueConfirm;
-}
-var ConfirmationService = {
-  install: function install2(app) {
-    var ConfirmationService2 = {
-      require: function require2(options) {
-        ConfirmationEventBus.emit("confirm", options);
-      },
-      close: function close() {
-        ConfirmationEventBus.emit("close");
-      }
-    };
-    app.config.globalProperties.$confirm = ConfirmationService2;
-    app.provide(PrimeVueConfirmSymbol, ConfirmationService2);
-  }
-};
-var DynamicDialogEventBus = primebus();
-var PrimeVueDialogSymbol = Symbol();
-function useDialog() {
-  var PrimeVueDialog = inject(PrimeVueDialogSymbol);
-  if (!PrimeVueDialog) {
-    throw new Error("No PrimeVue Dialog provided!");
-  }
-  return PrimeVueDialog;
-}
-var DialogService = {
-  install: function install3(app) {
-    var DialogService2 = {
-      open: function open(content, options) {
-        var instance = {
-          content: content && markRaw(content),
-          options: options || {},
-          data: options && options.data,
-          close: function close(params) {
-            DynamicDialogEventBus.emit("close", {
-              instance,
-              params
-            });
-          }
-        };
-        DynamicDialogEventBus.emit("open", {
-          instance
-        });
-        return instance;
-      }
-    };
-    app.config.globalProperties.$dialog = DialogService2;
-    app.provide(PrimeVueDialogSymbol, DialogService2);
-  }
-};
-var ToastEventBus = primebus();
-var PrimeVueToastSymbol = Symbol();
-function useToast() {
-  var PrimeVueToast = inject(PrimeVueToastSymbol);
-  if (!PrimeVueToast) {
-    throw new Error("No PrimeVue Toast provided!");
-  }
-  return PrimeVueToast;
-}
-var ToastService = {
-  install: function install4(app) {
-    var ToastService2 = {
-      add: function add(message) {
-        ToastEventBus.emit("add", message);
-      },
-      remove: function remove3(message) {
-        ToastEventBus.emit("remove", message);
-      },
-      removeGroup: function removeGroup(group) {
-        ToastEventBus.emit("remove-group", group);
-      },
-      removeAllGroups: function removeAllGroups() {
-        ToastEventBus.emit("remove-all-groups");
-      }
-    };
-    app.config.globalProperties.$toast = ToastService2;
-    app.provide(PrimeVueToastSymbol, ToastService2);
-  }
-};
 function _typeof$7(o) {
   "@babel/helpers - typeof";
   return _typeof$7 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -10926,9 +10648,6 @@ const primevue_plugin_egKpok8Auk = /* @__PURE__ */ defineNuxtPlugin(({ vueApp })
   const { usePrimeVue = true, options = {} } = config;
   const pt = {};
   usePrimeVue && vueApp.use(PrimeVue, { ...options, ...pt });
-  vueApp.use(ConfirmationService);
-  vueApp.use(DialogService);
-  vueApp.use(ToastService);
   vueApp.directive("badge", BadgeDirective);
   vueApp.directive("tooltip", Tooltip);
   vueApp.directive("ripple", Ripple);
@@ -11708,10 +11427,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, _ctx.ptm("end")), [renderSlot(_ctx.$slots, "end")], 16)], 16, _hoisted_1);
 }
 script.render = render;
-const toolbar_esm = /* @__PURE__ */ Object.freeze({
-  __proto__: null,
-  default: script
-});
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "Header",
   __ssrInlineRender: true,
@@ -11874,7 +11589,7 @@ const _wrapIf = (component, props, slots) => {
     return props ? h(component, props, slots) : (_a = slots.default) == null ? void 0 : _a.call(slots);
   } };
 };
-const __nuxt_component_4 = /* @__PURE__ */ defineComponent({
+const __nuxt_component_1 = /* @__PURE__ */ defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
@@ -11974,7 +11689,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     init();
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Header = _sfc_main$3;
-      const _component_NuxtPage = __nuxt_component_4;
+      const _component_NuxtPage = __nuxt_component_1;
       _push(`<div${ssrRenderAttrs(mergeProps({ class: "app-container" }, _attrs))} data-v-90fc82ce>`);
       _push(ssrRenderComponent(_component_Header, { class: "app-header" }, null, _parent));
       _push(ssrRenderComponent(_component_NuxtPage, { class: "app-page" }, null, _parent));
@@ -12017,8 +11732,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/error-404-8f4f566b.mjs').then((r) => r.default || r));
-    const _Error = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/error-500-96796b58.mjs').then((r) => r.default || r));
+    const _Error404 = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/error-404-d7e07383.mjs').then((r) => r.default || r));
+    const _Error = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/error-500-4dc3547c.mjs').then((r) => r.default || r));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -12103,5 +11818,5 @@ let entry;
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { ConfirmationEventBus as A, BaseStyle as B, ConnectedOverlayScrollHandler as C, DomHandler as D, DynamicDialogEventBus as E, FilterMatchMode as F, Tooltip as G, ObjectUtils as O, Ripple as R, ToastEventBus as T, UniqueComponentId as U, ZIndexUtils as Z, _export_sfc as _, __nuxt_component_0 as a, useRouter as b, createError as c, useI18n as d, entry$1 as default, useConfirm as e, useToast as f, useDialog as g, useObjectUrl as h, toValue as i, tryOnScopeDispose as j, useState as k, asyncDataDefaults as l, useNuxtApp as m, fetchDefaults as n, useRequestFetch as o, useLocalStorage as p, __nuxt_component_4 as q, injectHead as r, resolveUnrefHeadInput as s, toRef as t, useRoute as u, script$2 as v, FocusTrap as w, primebus as x, FilterService as y, FilterOperator as z };
+export { BaseStyle as B, ConnectedOverlayScrollHandler as C, DomHandler as D, FilterOperator as F, ObjectUtils as O, Ripple as R, UniqueComponentId as U, ZIndexUtils as Z, _export_sfc as _, __nuxt_component_0 as a, useRouter as b, createError as c, useI18n as d, entry$1 as default, FilterService as e, FilterMatchMode as f, FocusTrap as g, useObjectUrl as h, toValue as i, tryOnScopeDispose as j, useState as k, asyncDataDefaults as l, useNuxtApp as m, fetchDefaults as n, useRequestFetch as o, primebus as p, useLocalStorage as q, __nuxt_component_1 as r, script$2 as s, toRef as t, useRoute as u, injectHead as v, resolveUnrefHeadInput as w };
 //# sourceMappingURL=server.mjs.map

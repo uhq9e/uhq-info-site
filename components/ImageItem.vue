@@ -62,6 +62,9 @@
 </template>
 
 <script setup lang="ts">
+import Button from "primevue/button";
+import Tag from "primevue/tag";
+
 const props = defineProps<{
   item: ImageItem;
 }>();

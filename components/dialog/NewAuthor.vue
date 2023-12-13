@@ -36,6 +36,10 @@
 </template>
 
 <script setup lang="ts">
+import InputText from "primevue/inputtext";
+import Chips from "primevue/chips";
+import Button from "primevue/button";
+
 import type { DynamicDialogInstance } from "primevue/dynamicdialogoptions";
 
 import { toTypedSchema } from "@vee-validate/zod";

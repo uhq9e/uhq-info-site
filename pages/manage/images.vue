@@ -125,6 +125,15 @@
 
 <script setup lang="ts">
 import NewImageItem from "@/components/dialog/NewImageItem.vue";
+import Button from "primevue/button";
+import Checkbox from "primevue/checkbox";
+import ConfirmDialog from "primevue/confirmdialog";
+import DynamicDialog from "primevue/dynamicdialog";
+import InputNumber from "primevue/inputnumber";
+import Menubar from "primevue/menubar";
+import Tag from "primevue/tag";
+import TriStateCheckbox from "primevue/tristatecheckbox";
+import Toast from "primevue/toast";
 
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";

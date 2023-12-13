@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "@babel/parser": "7.23.4",
-    "@kurkle/color": "0.3.2",
     "@master/css": "1.37.8",
     "@unhead/dom": "1.8.1",
     "@unhead/shared": "1.8.1",
@@ -20,7 +19,6 @@
     "@vue/runtime-dom": "3.3.7",
     "@vue/server-renderer": "3.3.7",
     "@vue/shared": "3.3.7",
-    "chart.js": "4.4.1",
     "devalue": "4.3.2",
     "estree-walker": "2.0.2",
     "hookable": "5.5.3",

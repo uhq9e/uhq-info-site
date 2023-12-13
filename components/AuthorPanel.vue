@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import type OverlayPanel from "primevue/overlaypanel";
+import OverlayPanel from "primevue/overlaypanel";
 
 defineProps<{
   author?: Author;

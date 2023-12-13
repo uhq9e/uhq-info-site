@@ -35,7 +35,9 @@ export default defineNuxtConfig({
       ripple: true,
       locale: zh_CN,
     },
-    components: {},
+    components: {
+      include: [],
+    },
   },
   vite: {
     build: {

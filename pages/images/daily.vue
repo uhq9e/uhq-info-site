@@ -46,6 +46,8 @@
 
 <script setup lang="ts">
 import BlockUI from "primevue/blockui";
+import Paginator from "primevue/paginator";
+
 import { groupBy } from "lodash-es";
 import { sortMetaArrayToFormat } from "~/utils";
 

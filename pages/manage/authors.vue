@@ -83,6 +83,13 @@
 
 <script setup lang="ts">
 import NewAuthor from "~/components/dialog/NewAuthor.vue";
+import Button from "primevue/button";
+import DataTable from "primevue/datatable";
+import DynamicDialog from "primevue/dynamicdialog";
+import InputNumber from "primevue/inputnumber";
+import InputText from "primevue/inputtext";
+import Menubar from "primevue/menubar";
+import Toast from "primevue/toast";
 
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";

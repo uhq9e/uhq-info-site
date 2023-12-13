@@ -36,6 +36,9 @@
 
 <script setup lang="ts">
 import Toast from "primevue/toast";
+import Button from "primevue/button";
+import Card from "primevue/card";
+import InputText from "primevue/inputtext";
 
 import { useLocalStorage } from "@vueuse/core";
 import { useToast } from "primevue/usetoast";

@@ -10,6 +10,8 @@
 </template>
 
 <script setup lang="ts">
+import Tag from "primevue/tag";
+
 const props = defineProps<{
   url: string;
 }>();

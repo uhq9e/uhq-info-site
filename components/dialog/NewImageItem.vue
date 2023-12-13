@@ -62,6 +62,14 @@
 </template>
 
 <script setup lang="ts">
+import Button from "primevue/button";
+import Dialog from "primevue/dialog";
+import TabPanel from "primevue/tabpanel";
+import TabView from "primevue/tabview";
+import Textarea from "primevue/textarea";
+import Menubar from "primevue/menubar";
+import BlockUI from "primevue/blockui";
+
 import type { DynamicDialogInstance } from "primevue/dynamicdialogoptions";
 import type { MenuItem } from "primevue/menuitem";
 import type { ImportImageItem } from "~/utils/misc";

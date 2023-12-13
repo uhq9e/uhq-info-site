@@ -139,8 +139,15 @@
 </template>
 
 <script setup lang="ts">
+import Button from "primevue/button";
+import Checkbox from "primevue/checkbox";
+import Chips from "primevue/chips";
+import Dialog from "primevue/dialog";
+import InputText from "primevue/inputtext";
+import Menu from "primevue/menu";
+import Tag from "primevue/tag";
+
 import type { AutoCompleteCompleteEvent } from "primevue/autocomplete";
-import type Menu from "primevue/menu";
 import type { MenuItem } from "primevue/menuitem";
 import { UseObjectUrl } from "@vueuse/components";
 import { urlToFavicon } from "~/utils";

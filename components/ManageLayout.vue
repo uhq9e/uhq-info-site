@@ -15,7 +15,9 @@
     />
     <div class="flex flex:row flex-grow:1 w:full">
       <NavigateMenu class="hidden@<xs mr:8" :items="items" />
-      <div class="flex-grow:1 b:1 b:solid b:var(--surface-border) r:6 overflow:hidden">
+      <div
+        class="flex-grow:1 b:1 b:solid b:var(--surface-border) r:6 overflow:hidden"
+      >
         <slot />
       </div>
     </div>
@@ -23,6 +25,9 @@
 </template>
 
 <script setup lang="ts">
+import Button from "primevue/button";
+import Sidebar from "primevue/sidebar";
+
 import type { MenuItem } from "primevue/menuitem";
 
 defineSlots<{
