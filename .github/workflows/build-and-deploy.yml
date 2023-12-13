@@ -29,4 +29,11 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+      - name: Extract zip file
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: unzip /root/frontend/build_result.zip -d /root/frontend/build_result
       - run: echo "🍏 This job's status is ${{ job.status }}."

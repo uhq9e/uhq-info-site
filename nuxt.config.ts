@@ -69,7 +69,8 @@ export default defineNuxtConfig({
             (asset: string) =>
               !asset.endsWith(".webp") &&
               !asset.endsWith(".jpg") &&
-              !asset.endsWith(".png")
+              !asset.endsWith(".png") &&
+              !asset.endsWith(".woff2")
           );
         }
       }
