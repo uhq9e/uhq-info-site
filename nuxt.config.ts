@@ -35,8 +35,12 @@ export default defineNuxtConfig({
       ripple: true,
       locale: zh_CN,
     },
+    components: {},
   },
   vite: {
+    build: {
+      modulePreload: false,
+    },
     server: {
       proxy: {
         "/api": {
@@ -49,6 +53,22 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       server: false,
+    },
+  },
+  hooks: {
+    "build:manifest": (manifest) => {
+      for (const key in manifest) {
+        const file = manifest[key];
+
+        if (file.assets) {
+          file.assets = file.assets.filter(
+            (asset: string) =>
+              !asset.endsWith(".webp") &&
+              !asset.endsWith(".jpg") &&
+              !asset.endsWith(".png")
+          );
+        }
+      }
     },
   },
 });
