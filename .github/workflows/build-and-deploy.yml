@@ -19,7 +19,7 @@ jobs:
       - name: Zip output
         uses: vimtor/action-zip@v1.1
         with:
-          files: .output ecosystem.config.js
+          files: ./
           dest: build_result.zip
       - name: Copy build_result.zip to vultr
         uses: garygrossgarten/github-action-scp@release
