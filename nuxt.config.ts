@@ -56,6 +56,7 @@ export default defineNuxtConfig({
     },
   },
   hooks: {
+    /*
     "build:manifest": (manifest) => {
       for (const key in manifest) {
         // or other logic
@@ -75,5 +76,6 @@ export default defineNuxtConfig({
         }
       }
     },
+    */
   },
 });

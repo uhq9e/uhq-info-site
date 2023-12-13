@@ -1,13 +1,15 @@
 @font-face {
-    font-family: 'MiSans';
-    font-weight: normal;
-    font-style: normal;
-    src: local('MiSans'), url('../fonts/MiSans-Regular.woff2') format('woff2');
+  font-family: "MiSans";
+  font-weight: normal;
+  font-style: normal;
+  src: local("MiSans"), url("../fonts/MiSans-Regular.woff2") format("woff2");
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'MiSans';
-    font-weight: bold;
-    font-style: normal;
-    src: local('MiSans'), url('../fonts/MiSans-Bold.woff2') format('woff2');
+  font-family: "MiSans";
+  font-weight: bold;
+  font-style: normal;
+  src: local("MiSans"), url("../fonts/MiSans-Bold.woff2") format("woff2");
+  font-display: swap;
 }
