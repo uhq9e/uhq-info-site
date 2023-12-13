@@ -41,8 +41,10 @@ const pageDescription = "若千人的末路";
 useSeoMeta({
   title: pageTitle,
   ogTitle: pageTitle,
+  twitterTitle: pageTitle,
   description: pageDescription,
   ogDescription: pageDescription,
+  twitterDescription: pageDescription,
 });
 </script>
 

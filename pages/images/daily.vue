@@ -25,7 +25,9 @@
               v-for="file in image[1].slice(0, 6)"
               class="h:full r:6 shadow-2 aspect:1/1 bg:center bg:cover"
               :style="{
-                backgroundImage: `url('https://object.wakachika.love/${file.local_files[0].path}')`,
+                backgroundImage: `url('${siteData.objectUrl(
+                  file.local_files[0].path
+                )}')`,
               }"
             ></div>
           </div>
@@ -49,18 +51,21 @@ import BlockUI from "primevue/blockui";
 import Paginator from "primevue/paginator";
 
 import { groupBy } from "lodash-es";
-import { sortMetaArrayToFormat } from "~/utils";
+import { sortMetaArrayToFormat, siteData } from "~/utils";
 
 import type { DataTableSortMeta } from "primevue/datatable";
 
 const pageTitle = pageTitleFormat("鱼图");
-const pageDescription = "每日收集鱼图。由于个人喜好及人工收集难免漏图等缘故，如有遗漏属正常现象。";
+const pageDescription =
+  "每日收集鱼图。由于个人喜好及人工收集难免漏图等缘故，如有遗漏属正常现象。";
 
 useSeoMeta({
   title: pageTitle,
   ogTitle: pageTitle,
+  twitterTitle: pageTitle,
   description: pageDescription,
   ogDescription: pageDescription,
+  twitterDescription: pageDescription,
 });
 
 interface QueryParams {

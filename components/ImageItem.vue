@@ -38,7 +38,7 @@
           @click="selectionIndex = i"
         >
           <img
-            :src="`https://object.wakachika.love/${file.path}`"
+            :src="siteData.objectUrl(file.path)"
             :alt="file.file_name"
             class="w:full h:full obj:cover"
             loading="lazy"
@@ -46,7 +46,7 @@
         </div>
       </div>
       <img
-        :src="`https://object.wakachika.love/${item.local_files[selectionIndex].path}`"
+        :src="siteData.objectUrl(item.local_files[selectionIndex].path)"
         :alt="item.local_files[selectionIndex].file_name"
         class="w:inherit r:6"
         loading="lazy"
@@ -68,6 +68,8 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import Tag from "primevue/tag";
+
+import { siteData } from "~/utils";
 
 const props = defineProps<{
   item: ImageItem;

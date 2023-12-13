@@ -50,8 +50,10 @@ const pageDescription = "网站内容管理面板";
 useSeoMeta({
   title: pageTitle,
   ogTitle: pageTitle,
+  twitterTitle: pageTitle,
   description: pageDescription,
   ogDescription: pageDescription,
+  twitterDescription: pageDescription,
 });
 
 const { t } = useI18n();

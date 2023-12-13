@@ -14,31 +14,41 @@
 </template>
 
 <script setup lang="ts">
+import { siteData } from "~/utils";
+
 const route = useRoute();
-const { data, pending, error, execute } = useFetch<ListResponse<ImageItem>>(
-  "/api/images/item",
-  {
-    server: false,
-    query: {
-      date: route.params.date,
-      order_by: "+id",
-    },
-  }
-);
+const { data, pending, error, execute } = await useFetch<
+  ListResponse<ImageItem>
+>("/api/images/item", {
+  server: false,
+  query: {
+    date: route.params.date,
+    order_by: "+id",
+  },
+});
 
 const pageDescription = `${route.params.date}的鱼图`;
 const pageTitle = pageTitleFormat(pageDescription);
+const pageImageItem = computed(() => data.value?.items.find((v) => !v.nsfw));
+const pageImage = computed(() =>
+  pageImageItem.value
+    ? siteData.objectUrl(pageImageItem.value.local_files[0].path)
+    : undefined
+);
 
 useSeoMeta({
   title: pageTitle,
   ogTitle: pageTitle,
+  twitterTitle: pageTitle,
   description: pageDescription,
   ogDescription: pageDescription,
+  twitterDescription: pageDescription,
+  ogImage: pageImage,
+  twitterImage: pageImage,
 });
 
 watchEffect(() => {
   if (error.value) {
-    console.log(error.value?.status);
     switch (error.value?.status) {
       case 422:
         throw createError({

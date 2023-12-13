@@ -40,7 +40,7 @@
         <template #body="slotProps">
           <div
             v-if="slotProps.data.local_files.length"
-            :class="`aspect:1/1 w:6rem shadow-2 r:6 bg:center bg:cover bg:url('https://object.wakachika.love/${slotProps.data.local_files[0].path}')`"
+            :class="`aspect:1/1 w:6rem shadow-2 r:6 bg:center bg:cover bg:url('${siteData.objectUrl(slotProps.data.local_files[0].path)}')`"
           ></div>
         </template>
       </Column>
@@ -148,7 +148,7 @@ import type {
 } from "primevue/datatable";
 import type { MenuItem } from "primevue/menuitem";
 import { FilterMatchMode } from "primevue/api";
-import { sortMetaArrayToFormat, statusHandler } from "~/utils";
+import { sortMetaArrayToFormat, statusHandler, siteData } from "~/utils";
 
 interface QueryParams {
   offset: number;

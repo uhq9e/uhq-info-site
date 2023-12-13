@@ -90,3 +90,11 @@ export function statusHandler(status: number, success: Function) {
       break;
   }
 }
+
+export class siteData {
+  static readonly objectUrlPrefix = "https://object.wakachika.love/";
+
+  public static objectUrl(path: string): string {
+    return `${this.objectUrlPrefix}${path}`;
+  }
+}
