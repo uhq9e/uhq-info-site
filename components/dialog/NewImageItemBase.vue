@@ -48,7 +48,7 @@
             <div class="flex flex:row align-items:center gap:4">
               <NuxtLink :href="slotProps.value" target="_blank">
                 <Tag>
-                  <img
+                  <NuxtImg
                     :src="urlToFavicon(slotProps.value) ?? 'favicon.ico'"
                     alt="favicon"
                     class="h:16 aspect:1/1 mr:2"

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex:col">
-    <PageTitle :value="(route.params.date as string)" show-back-button />
+    <PageTitle :value="(route.params.date as string)" :caption="pageDescription" show-back-button />
     <div
       class="flex flex:col w:full align-items:center as:center gap:8 general-width"
     >
