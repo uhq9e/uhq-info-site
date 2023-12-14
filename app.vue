@@ -1,9 +1,5 @@
 <template>
   <div class="app-container">
-    <link
-      rel="stylesheet"
-      href="https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700:Chinese_Simplify,Japanese,Latin&display=swap"
-    />
     <NuxtLoadingIndicator />
     <Header class="app-header" />
     <NuxtPage class="app-page" />
@@ -21,6 +17,15 @@ Style.extend("classes", {
     "text-shadow:-1|-1|0|gray-84,1|-1|0|gray-84,-1|1|0|gray-84,1|1|0|gray-84",
 });
 init();
+
+onMounted(() => {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href =
+    "https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700:Chinese_Simplify,Japanese,Latin&display=swap";
+  document.getElementsByTagName("head")[0].appendChild(link);
+});
 </script>
 
 <style scoped>
