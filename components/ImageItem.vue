@@ -37,8 +37,7 @@
           ]"
           @click="selectionIndex = i"
         >
-          <NuxtImg
-            format="webp"
+          <img
             :src="siteData.objectUrl(file.path)"
             :alt="file.file_name"
             class="w:full h:full obj:cover"
@@ -46,8 +45,7 @@
           />
         </div>
       </div>
-      <NuxtImg
-        format="webp"
+      <img
         :src="siteData.objectUrl(item.local_files[selectionIndex].path)"
         :alt="item.local_files[selectionIndex].file_name"
         class="w:inherit r:6"
