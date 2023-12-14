@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <Head>
+      <Link
+        rel="stylesheet"
+        href="https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700:Chinese_Simplify,Japanese,Latin&display=swap"
+      />
+    </Head>
     <NuxtLoadingIndicator />
     <Header class="app-header" />
     <NuxtPage class="app-page" />
