@@ -139,7 +139,9 @@
 </template>
 
 <script setup lang="ts">
+import AutoComplete from "primevue/autocomplete";
 import Button from "primevue/button";
+import Calendar from "primevue/calendar";
 import Checkbox from "primevue/checkbox";
 import Chips from "primevue/chips";
 import Dialog from "primevue/dialog";
