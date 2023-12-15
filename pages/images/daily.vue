@@ -24,6 +24,7 @@
             <div
               v-for="file in image[1].slice(0, 6)"
               class="h:full r:6 shadow-2 aspect:1/1 bg:center bg:cover"
+              :class="{ 'filter:blur(15px)': file.nsfw }"
               :style="{
                 backgroundImage: `url('${siteData.objectUrl(
                   file.local_files[0].path
