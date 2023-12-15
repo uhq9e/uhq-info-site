@@ -9,7 +9,7 @@
           zIndex: 999,
           border: 'none',
         },
-        class: 'shadow-2',
+        class: 'shadow-1',
       },
     }"
   >

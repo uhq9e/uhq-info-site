@@ -1,12 +1,15 @@
 <template>
   <div class="app-container">
     <NuxtLoadingIndicator />
+    <Toast />
     <Header class="app-header" />
     <NuxtPage class="app-page" />
   </div>
 </template>
 
 <script setup lang="ts">
+import Toast from "primevue/toast";
+
 import "@master/css";
 import * as pkg from "@master/css";
 const { init, Style } = pkg;
@@ -23,7 +26,7 @@ onMounted(() => {
   link.rel = "stylesheet";
   link.type = "text/css";
   link.href =
-    "https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700:Chinese_Simplify,Japanese,Latin&display=swap";
+    "https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700&display=swap";
   document.getElementsByTagName("head")[0].appendChild(link);
 });
 </script>
@@ -45,5 +48,15 @@ onMounted(() => {
 <style>
 .app-page {
   margin-top: 5rem;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.35s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
 }
 </style>

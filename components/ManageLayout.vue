@@ -28,15 +28,12 @@
 import Button from "primevue/button";
 import Sidebar from "primevue/sidebar";
 
-import type { MenuItem } from "primevue/menuitem";
+import menuItems from "~/pages/manage/menuItems";
 
 defineSlots<{
   default(props: {}): any;
 }>();
 
-const items = ref<MenuItem[]>([
-  { label: "图片管理", url: "/manage/images" },
-  { label: "作者管理", url: "/manage/authors" },
-]);
+const items = ref(menuItems);
 const sidebarVisible = ref(false);
 </script>

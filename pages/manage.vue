@@ -1,6 +1,5 @@
 <template>
   <div v-if="inited">
-    <Toast />
     <div
       v-if="tokenStorage.token === null"
       class="flex flex:col align-items:center"
@@ -35,7 +34,6 @@
 </template>
 
 <script setup lang="ts">
-import Toast from "primevue/toast";
 import Button from "primevue/button";
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";

@@ -30,7 +30,7 @@
         <div
           v-for="(file, i) in item.local_files"
           :class="[
-            'h:full r:6 aspect:1/1 cursor:pointer b:var(--primary-color) b:2 b:dashed:hover',
+            'h:full r:6 aspect:1/1 cursor:pointer b:var(--primary-color) b:2 b:dashed:hover overflow:hidden',
             {
               'b:solid': i === selectionIndex,
             },

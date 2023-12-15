@@ -23,7 +23,7 @@
         class="w:100% w:50%@sm static@>sm abs@<sm r:6@md overflow:hidden top:0 right:0 bottom:0 left:0"
       >
         <div
-          class="clip:polygon(8%|0,100%|0%,100%|100%,0|100%)@sm w:full h:full bg:url('/images/hero.jpg') bg:cover bg:center"
+          class="clip:polygon(8%|0,100%|0%,100%|100%,0|100%)@sm w:full h:full bg:url('/images/hero.webp') bg:cover bg:center"
         />
       </div>
     </div>
@@ -31,12 +31,13 @@
 </template>
 
 <script setup lang="ts">
-import { pageTitleFormat } from "~/utils";
+import { pageTitleFormat, siteData } from "~/utils";
 
 const { t } = useI18n();
 
 const pageTitle = pageTitleFormat("主页");
 const pageDescription = "若千人的末路";
+const pageImage = `${siteData.host}images/hero.webp`;
 
 useSeoMeta({
   title: pageTitle,

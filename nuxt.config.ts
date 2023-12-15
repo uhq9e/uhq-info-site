@@ -39,6 +39,9 @@ export default defineNuxtConfig({
       include: [],
     },
   },
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
+  },
   vite: {
     build: {
       modulePreload: false,

@@ -85,6 +85,7 @@
 import NewAuthor from "~/components/dialog/NewAuthor.vue";
 import Button from "primevue/button";
 import DataTable from "primevue/datatable";
+import Column from "primevue/column";
 import DynamicDialog from "primevue/dynamicdialog";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";

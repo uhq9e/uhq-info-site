@@ -40,7 +40,9 @@
         <template #body="slotProps">
           <div
             v-if="slotProps.data.local_files.length"
-            :class="`aspect:1/1 w:6rem shadow-2 r:6 bg:center bg:cover bg:url('${siteData.objectUrl(slotProps.data.local_files[0].path)}')`"
+            :class="`aspect:1/1 w:6rem shadow-2 r:6 bg:center bg:cover bg:url('${siteData.objectUrl(
+              slotProps.data.local_files[0].path
+            )}')`"
           ></div>
         </template>
       </Column>
@@ -134,6 +136,8 @@ import Menubar from "primevue/menubar";
 import Tag from "primevue/tag";
 import TriStateCheckbox from "primevue/tristatecheckbox";
 import Toast from "primevue/toast";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
 
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
@@ -241,7 +245,6 @@ function onPage(event: DataTablePageEvent) {
 }
 
 function onSort(event: DataTableSortEvent) {
-  console.log(event);
   queryParams.value = {
     ...queryParams.value,
     offset: event.first,
@@ -257,7 +260,6 @@ function onSort(event: DataTableSortEvent) {
 }
 
 function onFilter(event: DataTableFilterEvent) {
-  console.log(event);
   queryParams.value = {
     ...queryParams.value,
     offset: event.first,
