@@ -92,8 +92,8 @@ export function statusHandler(status: number, success: Function) {
 }
 
 export class siteData {
-  static readonly host = "https://object.wakachika.love/";
-  static readonly objectUrlPrefix = siteData.host;
+  static readonly host = "https://blog.wakachika.love";
+  static readonly objectUrlPrefix = "https://object.wakachika.love/";
 
   public static objectUrl(path: string): string {
     return `${this.objectUrlPrefix}${path}`;

@@ -46,6 +46,8 @@ useSeoMeta({
   description: pageDescription,
   ogDescription: pageDescription,
   twitterDescription: pageDescription,
+  ogImage: pageImage,
+  twitterImage: pageImage,
 });
 </script>
 

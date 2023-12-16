@@ -1,6 +1,18 @@
 <template>
   <div class="flex flex:col">
-    <PageTitle :value="(route.params.date as string)" :caption="pageDescription" show-back-button />
+    <PageTitle
+      :value="(route.params.date as string)"
+      :caption="pageDescription"
+      show-back-button
+    >
+      <template #after>
+        <div class="ml:8">
+          <NuxtLink :href="shareToQQURL" target="_blank" title="分享到QQ"
+            >QQ</NuxtLink
+          >
+        </div>
+      </template>
+    </PageTitle>
     <div
       class="flex flex:col w:full align-items:center as:center gap:8 general-width"
     >
@@ -45,6 +57,19 @@ useSeoMeta({
   twitterDescription: pageDescription,
   ogImage: pageImage,
   twitterImage: pageImage,
+});
+
+const shareToQQURL = computed(() => {
+  const components = {
+    url: `${siteData.host}${route.fullPath}`,
+    title: pageTitle,
+    summary: pageDescription,
+    pics: pageImage.value,
+  };
+  const query = Object.entries(components)
+    .map<string>((v) => `${v[0]}=${encodeURIComponent(v[1] ?? "")}`)
+    .join("&");
+  return `https://connect.qq.com/widget/shareqq/iframe_index.html?${query}`;
 });
 
 watchEffect(() => {

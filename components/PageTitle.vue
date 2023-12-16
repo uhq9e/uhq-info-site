@@ -13,6 +13,7 @@
       />
       <slot name="before" />
       <h1 class="my:0">{{ value }}</h1>
+      <slot name="after" />
     </div>
     <div class="mt:4">
       {{ caption }}

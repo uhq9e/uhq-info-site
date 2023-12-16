@@ -79,7 +79,10 @@ interface QueryParams {
   nsfw?: Ref<boolean>;
 }
 
-const defaultOrderBy: DataTableSortMeta[] = [{ field: "date", order: -1 }];
+const defaultOrderBy: DataTableSortMeta[] = [
+  { field: "date", order: -1 },
+  { field: "id", order: 1 },
+];
 
 const route = useRoute();
 const router = useRouter();
