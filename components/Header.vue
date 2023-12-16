@@ -94,18 +94,21 @@ import Menubar from "primevue/menubar";
 import type { MenuItem } from "primevue/menuitem";
 
 const route = useRoute();
+const router = useRouter();
 const { t } = useI18n();
 
 const items: MenuItem[] = [
   {
     label: "鱼图",
     icon: "pi pi-image",
-    to: "/images/daily",
+    // to: "/images/daily",
+    command: () => router.push("/images/daily"),
   },
   {
     label: "鱼文",
     icon: "pi pi-book",
-    to: "/novels",
+    // to: "/novels",
+    command: () => router.push("/novels"),
   },
 ];
 
