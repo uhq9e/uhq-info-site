@@ -1,6 +1,10 @@
 <template>
   <div v-if="data">
-    <PageTitle :value="data.title" :caption="data.description" class="pb:0" />
+    <PageTitle :value="data.title" :caption="data.description" class="pb:0">
+      <template #after>
+        <Tag v-if="data.nsfw" value="NSFW" severity="danger" />
+      </template>
+    </PageTitle>
     <Divider />
     <div class="px:16 flex flex:col gap:16 {flex;flex:col;gap:4}>*">
       <NuxtLink
@@ -15,6 +19,12 @@
         <div><i class="pi pi-link mr:4"></i>原址</div>
         <div class="word-break:break-all">{{ data.url }}</div>
       </NuxtLink>
+      <div title="标签">
+        <div><i class="pi pi-tags mr:4"></i>标签</div>
+        <div class="flex flex:row gap:4">
+          <Tag v-for="tag in data.tags" :value="tag" />
+        </div>
+      </div>
       <div title="页数">
         <div><i class="pi pi-file mr:4"></i>页数</div>
         <span v-if="!pdfData">...</span>
@@ -52,21 +62,21 @@
 
 <script setup lang="ts">
 import Divider from "primevue/divider";
+import Tag from "primevue/tag";
 import { siteData } from "~/utils";
 
 const isDev = process.env.NODE_ENV === "development";
 
 const route = useRoute();
 
-const { data, pending, error, execute } = useFetch<Novel>(
-  `/api/novels/item/${route.params.id}`,
-  {
-    server: false,
-  }
+const data = await $fetch<Novel>(
+  `${isDev ? siteData.hostDev : siteData.host}/api/novels/item/${
+    route.params.id
+  }`
 );
 
-const pageTitle = computed(() => pageTitleFormat(data.value?.title));
-const pageDescription = computed(() => data.value?.description);
+const pageTitle = computed(() => pageTitleFormat(data.title));
+const pageDescription = computed(() => data.description);
 
 useSeoMeta({
   title: pageTitle,

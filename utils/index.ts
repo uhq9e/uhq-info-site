@@ -94,6 +94,7 @@ export function statusHandler(status: number, success: Function) {
 
 export class siteData {
   static readonly host = "https://blog.wakachika.love";
+  static readonly hostDev = "http://localhost:3000";
   static readonly objectUrlPrefix = "https://object.wakachika.love/";
 
   public static objectUrl(path: string | undefined): string | undefined {
