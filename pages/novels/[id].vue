@@ -94,7 +94,7 @@ function pdfLoaded(event: any) {
 }
 
 const viewerWidth = computed(() => {
-  if (screen.height > 800) {
+  if (screen.width > 800) {
     return 800 - 16;
   } else {
     return screen.width - 16;
