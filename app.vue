@@ -1,5 +1,8 @@
 <template>
   <div class="app-container">
+    <Head>
+      <Meta name="theme-color" content="#a367b1" />
+    </Head>
     <NuxtLoadingIndicator />
     <Toast />
     <Header class="app-header" />
