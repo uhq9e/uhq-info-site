@@ -18,36 +18,34 @@
       <NuxtLink
         to="/"
         :class="{ 'font-color:var(--primary-color)': isActive('/') }"
-        class="mr:8"
+        class="mr:16"
       >
         <span class="f:bold">{{ t("site.title") }}</span>
       </NuxtLink>
     </template>
-    <!--
     <template #item="{ item, props, hasSubmenu, root }">
-      <a v-ripple class="flex align-items-center" v-bind="props.action">
+      <NuxtLink
+        v-ripple
+        class="flex align-items:center"
+        :to="item.to"
+        v-bind="props.action"
+      >
         <span :class="item.icon" />
-        <span class="ml-2">{{ item.label }}</span>
-        <Badge
-          v-if="item.badge"
-          :class="{ 'ml-auto': !root, 'ml-2': root }"
-          :value="item.badge"
-        />
+        <span class="ml:8">{{ item.label }}</span>
         <span
           v-if="item.shortcut"
-          class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
+          class="ml:auto b:1 b:var(--surface-border) r:6 p:8"
           >{{ item.shortcut }}</span
         >
         <i
           v-if="hasSubmenu"
           :class="[
-            'pi pi-angle-down text-primary',
-            { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root },
+            'pi pi-angle-down',
+            { 'pi-angle-down ml:8': root, 'pi-angle-right ml:auto': !root },
           ]"
         ></i>
-      </a>
+      </NuxtLink>
     </template>
-    -->
   </Menubar>
   <!--
   <Toolbar
@@ -88,7 +86,6 @@
 </template>
 
 <script setup lang="ts">
-import Toolbar from "primevue/toolbar";
 import Menubar from "primevue/menubar";
 
 import type { MenuItem } from "primevue/menuitem";
@@ -101,14 +98,12 @@ const items: MenuItem[] = [
   {
     label: "鱼图",
     icon: "pi pi-image",
-    // to: "/images/daily",
-    command: () => router.push("/images/daily"),
+    to: "/images/daily",
   },
   {
     label: "鱼文",
     icon: "pi pi-book",
-    // to: "/novels",
-    command: () => router.push("/novels"),
+    to: "/novels",
   },
 ];
 

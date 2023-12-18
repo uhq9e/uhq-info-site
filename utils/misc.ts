@@ -40,3 +40,16 @@ export const ImportImageItemSchema = z.object({
 export const ImportImageItemsSchema = z.array(ImportImageItemSchema);
 
 export type ImportImageItem = z.infer<typeof ImportImageItemSchema>;
+
+export const UploadNovelItemSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  url: z.string().optional(),
+  author_name: z.string(),
+  author_url: z.string().optional(),
+  nsfw: z.boolean(),
+  tags: z.array(z.string()).min(1),
+  file: z.custom<File>().refine((v) => v instanceof File),
+});
+
+export type UploadNovelItem = z.infer<typeof UploadNovelItemSchema>;

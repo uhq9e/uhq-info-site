@@ -2,36 +2,33 @@
   <div>
     <PageTitle value="鱼图" :caption="pageDescription" />
     <section class="flex flex:col">
-      <BlockUI :blocked="pending">
-        <Paginator
-          v-model:first="first"
-          @update:first="onFirstChange"
-          v-model:rows="rows"
-          :totalRecords="data?.count"
-          :pt="{ root: { style: { background: 'transparent' } } }"
-        />
-      </BlockUI>
       <div class="flex flex:col gap:8 align-items:center">
         <NuxtLink
           v-for="image in Object.entries(grouped)"
           :to="`/images/daily-${image[0]}`"
-          class="b:1 b:solid b:var(--surface-border) r:6 px:16 py:8 bg:white general-width w:full"
+          class="general-width w:full"
         >
-          <div class="f:bold mb:8 text-decoration">{{ image[0] }}</div>
-          <div
-            class="w:full h:150 px:16 py:8 flex flex:row gap:8 overflow-x:hidden b:1 b:solid b:var(--surface-border) r:6 bg:var(--surface-ground)"
+          <article
+            class="b:1 b:solid b:var(--surface-border) r:6 px:16 py:8 mt:16 bg:white translateY(-0.5rem):hover ~transform|250ms|ease"
           >
+            <div class="f:1.5em f:bold mt:-24 mb:8 text-decoration">
+              {{ image[0] }}
+            </div>
             <div
-              v-for="file in image[1].slice(0, 6)"
-              class="h:full r:6 shadow-2 aspect:1/1 bg:center bg:cover"
-              :class="{ 'filter:blur(15px)': file.nsfw }"
-              :style="{
-                backgroundImage: `url('${siteData.objectUrl(
-                  file.local_files[0].path
-                )}')`,
-              }"
-            ></div>
-          </div>
+              class="w:full h:150 px:16 py:8 flex flex:row gap:8 overflow-x:hidden b:1 b:solid b:var(--surface-border) r:6 bg:var(--surface-ground)"
+            >
+              <div
+                v-for="file in image[1].slice(0, 6)"
+                class="h:full r:6 shadow-2 aspect:1/1 bg:center bg:cover"
+                :class="{ 'filter:blur(15px)': file.nsfw }"
+                :style="{
+                  backgroundImage: `url('${siteData.objectUrl(
+                    file.local_files[0].path
+                  )}')`,
+                }"
+              ></div>
+            </div>
+          </article>
         </NuxtLink>
       </div>
       <BlockUI :blocked="pending">

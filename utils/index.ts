@@ -35,7 +35,8 @@ export async function validateToken(token: string): Promise<boolean> {
   return resp.status === 200 ? true : false;
 }
 
-export function pageTitleFormat(str: string): string {
+export function pageTitleFormat(str: string | undefined): string {
+  if (!str) return "若千人的末路";
   return `${str} | 若千人的末路`;
 }
 
@@ -95,7 +96,8 @@ export class siteData {
   static readonly host = "https://blog.wakachika.love";
   static readonly objectUrlPrefix = "https://object.wakachika.love/";
 
-  public static objectUrl(path: string): string {
+  public static objectUrl(path: string | undefined): string | undefined {
+    if (!path) return path;
     return `${this.objectUrlPrefix}${path}`;
   }
 }

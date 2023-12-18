@@ -44,6 +44,9 @@ dependencies:
   vee-validate:
     specifier: ^4.12.2
     version: 4.12.2(vue@3.3.7)
+  vue-pdf-embed:
+    specifier: '1'
+    version: 1.2.1(vue@3.3.7)
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -7390,6 +7393,14 @@ packages:
       '@vue/devtools-api': 6.5.1
       vue: 3.3.7
     dev: true
+
+  /vue-pdf-embed@1.2.1(vue@3.3.7):
+    resolution: {integrity: sha512-4uUm4wxaEGT9cS1cyuagAmMJjBxfQXWG1MvdGPesD3CiXhhSp4i0VMUCYwhFXtZ5+QqWv4mXbfLJ29Wpt+Qcuw==}
+    peerDependencies:
+      vue: ^2.x || ^3.x
+    dependencies:
+      vue: 3.3.7
+    dev: false
 
   /vue-router@4.2.5(vue@3.3.7):
     resolution: {integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==}

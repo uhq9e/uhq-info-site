@@ -47,7 +47,7 @@ import { z } from "zod";
 
 const dialogRef = inject<Ref<DynamicDialogInstance>>("dialogRef");
 const isEdit = (dialogRef?.value?.data?.edit ?? false) as boolean;
-const item: Author | undefined = dialogRef?.value?.data?.item;
+const item: Author | undefined = dialogRef?.value?.data?.editItem;
 
 if (isEdit && !item) {
   throw Error("编辑条目请传入item");

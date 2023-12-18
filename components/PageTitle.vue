@@ -15,7 +15,7 @@
       <h1 class="my:0">{{ value }}</h1>
       <slot name="after" />
     </div>
-    <div class="mt:4">
+    <div class="mt:4 white-space:pre-line">
       {{ caption }}
     </div>
     <div

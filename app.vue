@@ -16,6 +16,7 @@ const { init, Style } = pkg;
 
 Style.extend("classes", {
   "general-width": "max-w:40rem",
+  "large-width" : "max-w:50rem",
   "text-outline":
     "text-shadow:-1|-1|0|gray-84,1|-1|0|gray-84,-1|1|0|gray-84,1|1|0|gray-84",
 });

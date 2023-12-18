@@ -10,7 +10,7 @@
       sort-mode="multiple"
       :multi-sort-meta="defaultOrderBy"
       v-model:filters="filters"
-      :globalFilterFields="['id', 'name']"
+      :globalFilterFields="['id', 'author_name', 'nsfw']"
       filterDisplay="menu"
       data-key="id"
       lazy
@@ -31,8 +31,9 @@
           />
         </template>
       </Column>
+      <Column field="title" header="标题"></Column>
       <Column
-        field="name"
+        field="author_name"
         header="作者名"
         :show-filter-match-modes="false"
         sortable
@@ -46,10 +47,34 @@
           />
         </template>
       </Column>
-      <Column field="urls" header="社交链接">
+      <Column field="tags" header="标签">
         <template #body="slotProps">
           <div class="flex flex:row flex:wrap gap:4">
-            <AuthorLinkTag v-for="url in slotProps.data.urls" :url="url" />
+            <Tag v-for="tag in slotProps.data.tags" :value="tag" />
+          </div>
+        </template>
+      </Column>
+      <Column
+        field="nsfw"
+        header="NSFW"
+        :show-filter-match-modes="false"
+        sortable
+      >
+        <template #body="slotProps">
+          <Checkbox
+            :model-value="slotProps.data.nsfw"
+            :binary="true"
+            readonly
+          />
+        </template>
+        <template #filter="{ filterModel }">
+          <div>
+            <TriStateCheckbox
+              id="nsfw"
+              v-model="filterModel.value"
+              class="p-column-filter"
+            />
+            <label for="nsfw">是否为NSFW</label>
           </div>
         </template>
       </Column>
@@ -75,14 +100,13 @@
         </template>
       </Column>
     </DataTable>
-    <Toast />
     <ConfirmDialog />
     <DynamicDialog />
   </div>
 </template>
 
 <script setup lang="ts">
-import NewAuthor from "~/components/dialog/NewAuthor.vue";
+import NewNovel from "~/components/dialog/NewNovel.vue";
 import Button from "primevue/button";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -90,7 +114,8 @@ import DynamicDialog from "primevue/dynamicdialog";
 import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
 import Menubar from "primevue/menubar";
-import Toast from "primevue/toast";
+import Tag from "primevue/tag";
+import Checkbox from "primevue/checkbox";
 
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
@@ -113,12 +138,14 @@ interface QueryParams {
   order_by?: string;
   id?: number;
   name?: string;
+  nsfw?: boolean;
 }
 
 const defaultOrderBy: DataTableSortMeta[] = [{ field: "id", order: -1 }];
 const filters = ref({
   id: { value: null, matchMode: FilterMatchMode.EQUALS },
   name: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  nsfw: { value: null, matchMode: FilterMatchMode.EQUALS },
 });
 
 const { t } = useI18n();
@@ -137,8 +164,8 @@ const menuItems = ref<MenuItem[]>([
   { label: "刷新", icon: "pi pi-refresh", command: () => execute() },
 ]);
 
-const { data, pending, error, execute } = useFetch<ListResponse<Author>>(
-  "/api/authors/item",
+const { data, pending, error, execute } = useFetch<ListResponse<Novel>>(
+  "/api/novels/item",
   {
     query: queryParams,
     server: false,
@@ -155,7 +182,7 @@ function onDeleteItem(id: number) {
     accept: () => {
       loading.value = true;
       $fetch
-        .raw(`/api/authors/item/${id}`, {
+        .raw(`/api/novels/item/${id}`, {
           method: "DELETE",
           ignoreResponseError: true,
         })
@@ -188,6 +215,7 @@ function onPage(event: DataTablePageEvent) {
     name: (event.filters.name as DataTableFilterMetaData).value
       ? `%${(event.filters.name as DataTableFilterMetaData).value}%`
       : undefined,
+    nsfw: (event.filters.nsfw as DataTableFilterMetaData).value,
   };
 
   execute();
@@ -202,6 +230,7 @@ function onSort(event: DataTableSortEvent) {
     name: (event.filters.name as DataTableFilterMetaData).value
       ? `%${(event.filters.name as DataTableFilterMetaData).value}%`
       : undefined,
+    nsfw: (event.filters.nsfw as DataTableFilterMetaData).value,
   };
 
   execute();
@@ -216,13 +245,14 @@ function onFilter(event: DataTableFilterEvent) {
     name: (event.filters.name as DataTableFilterMetaData).value
       ? `%${(event.filters.name as DataTableFilterMetaData).value}%`
       : undefined,
+    nsfw: (event.filters.nsfw as DataTableFilterMetaData).value,
   };
 }
 
 function showNewItemDialog() {
-  dialog.open(NewAuthor, {
+  dialog.open(NewNovel, {
     props: {
-      header: "添加作者",
+      header: "添加作品",
       modal: true,
       style: {
         width: "50rem",
@@ -238,10 +268,10 @@ function showNewItemDialog() {
   });
 }
 
-function showEditItemDialog(item: Author) {
-  dialog.open(NewAuthor, {
+function showEditItemDialog(item: Novel) {
+  dialog.open(NewNovel, {
     props: {
-      header: "编辑作者",
+      header: "编辑作品",
       modal: true,
       style: {
         width: "50rem",
