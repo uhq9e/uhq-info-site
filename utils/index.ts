@@ -1,6 +1,7 @@
 import type { DataTableSortMeta } from "primevue/datatable";
 
 import { useToast } from "primevue/usetoast";
+import type { ToastServiceMethods } from "primevue/toastservice";
 
 export function formatDate(
   date: Date | null | undefined
@@ -92,7 +93,7 @@ export function statusHandler(status: number, success: Function) {
   }
 }
 
-export class siteData {
+export class SiteData {
   static readonly host = "https://blog.wakachika.love";
   static readonly hostDev = "http://localhost:3000";
   static readonly objectUrlPrefix = "https://object.wakachika.love/";
@@ -100,5 +101,49 @@ export class siteData {
   public static objectUrl(path: string | undefined): string | undefined {
     if (!path) return path;
     return `${this.objectUrlPrefix}${path}`;
+  }
+}
+
+export class Toast {
+  static readonly toastLife = 3000;
+
+  public static success(summary?: string, detail?: any) {
+    const toast = useToast();
+    toast.add({
+      severity: "success",
+      summary,
+      detail,
+      life: this.toastLife,
+    });
+  }
+
+  public static info(summary?: string, detail?: any) {
+    const toast = useToast();
+    toast.add({
+      severity: "info",
+      summary,
+      detail,
+      life: this.toastLife,
+    });
+  }
+
+  public static warn(summary?: string, detail?: any) {
+    const toast = useToast();
+    toast.add({
+      severity: "warn",
+      summary,
+      detail,
+      life: this.toastLife,
+    });
+  }
+
+  public static error(summary?: string, detail?: any) {
+    const toast = useToast();
+    toast.add({
+      severity: "error",
+      summary,
+      detail,
+      life: this.toastLife,
+    });
   }
 }

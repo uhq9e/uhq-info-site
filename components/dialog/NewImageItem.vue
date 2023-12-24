@@ -73,13 +73,14 @@ import BlockUI from "primevue/blockui";
 import type { DynamicDialogInstance } from "primevue/dynamicdialogoptions";
 import type { MenuItem } from "primevue/menuitem";
 import type { ImportImageItem } from "~/utils/misc";
+import type { PartialDeep } from "type-fest";
 import { v4 } from "uuid";
 import { toTypedSchema } from "@vee-validate/zod";
 import { z } from "zod";
 import NewImageItemBase from "./NewImageItemBase.vue";
 import AuthorLinkType from "~/utils/authorLinkType";
 import { ImportImageItemSchema, ImportImageItemsSchema } from "~/utils/misc";
-import type { PartialDeep } from "type-fest";
+import { Toast } from "~/utils";
 
 const dialogRef = inject<Ref<DynamicDialogInstance>>("dialogRef");
 const isEdit = (dialogRef?.value?.data?.edit ?? false) as boolean;
@@ -236,40 +237,62 @@ const onSubmit = async () => {
         }
       }
 
-      let imageIds = (await Promise.all(requests)).map((v) => v.id);
+      let uploadResults;
 
-      let insertedItem = await $fetch<InsertResponse<number>>(
-        "/api/images/item",
-        {
-          method: "POST",
-          body: {
-            author_id: (values.author as Author).id,
-            local_file_ids: imageIds,
-            urls: values.urls,
-            date: formatDate(values.date),
-            nsfw: values.nsfw,
-          },
-        }
-      );
+      try {
+        uploadResults = await Promise.all(requests);
+      } catch (error) {
+        Toast.error("图片上传阶段失败，请检查错误并重试", error);
+        uploading.value = false;
+        return;
+      }
 
-      uploadedItems.value = [...uploadedItems.value, pendingItem.id];
-      returnItems.push(insertedItem);
+      let imageIds = uploadResults.map((v) => v.id);
+
+      try {
+        let insertedItem = await $fetch<InsertResponse<number>>(
+          "/api/images/item",
+          {
+            method: "POST",
+            body: {
+              author_id: (values.author as Author).id,
+              local_file_ids: imageIds,
+              urls: values.urls,
+              date: formatDate(values.date),
+              nsfw: values.nsfw,
+            },
+          }
+        );
+
+        uploadedItems.value = [...uploadedItems.value, pendingItem.id];
+        returnItems.push(insertedItem);
+      } catch (error) {
+        Toast.error("提交阶段失败，请检查错误并重试", error);
+        uploading.value = false;
+        return;
+      }
     } else {
-      let updatedItem = await $fetch<UpdateResponse<number>>(
-        `/api/images/item/${editIds.value[i]}`,
-        {
-          method: "PUT",
-          body: {
-            author_id: (values.author as Author).id,
-            urls: values.urls,
-            date: formatDate(values.date),
-            nsfw: values.nsfw,
-          },
-        }
-      );
+      try {
+        let updatedItem = await $fetch<UpdateResponse<number>>(
+          `/api/images/item/${editIds.value[i]}`,
+          {
+            method: "PUT",
+            body: {
+              author_id: (values.author as Author).id,
+              urls: values.urls,
+              date: formatDate(values.date),
+              nsfw: values.nsfw,
+            },
+          }
+        );
 
-      uploadedItems.value = [...uploadedItems.value, pendingItem.id];
-      returnItems.push(updatedItem);
+        uploadedItems.value = [...uploadedItems.value, pendingItem.id];
+        returnItems.push(updatedItem);
+      } catch (error) {
+        Toast.error("提交阶段失败，请检查错误并重试", error);
+        uploading.value = false;
+        return;
+      }
     }
   }
 

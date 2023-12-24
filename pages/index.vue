@@ -40,13 +40,13 @@
 <script setup lang="ts">
 import type { MenuItem } from "primevue/menuitem";
 import Divider from "primevue/divider";
-import { pageTitleFormat, siteData } from "~/utils";
+import { pageTitleFormat, SiteData } from "~/utils";
 
 const { t } = useI18n();
 
 const pageTitle = pageTitleFormat("主页");
 const pageDescription = "若千人的末路";
-const pageImage = `${siteData.host}images/hero.webp`;
+const pageImage = `${SiteData.host}images/hero.webp`;
 
 useSeoMeta({
   title: pageTitle,

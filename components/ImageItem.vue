@@ -38,7 +38,7 @@
           @click="selectionIndex = i"
         >
           <img
-            :src="siteData.objectUrl(file.path)"
+            :src="SiteData.objectUrl(file.path)"
             :alt="file.file_name"
             class="w:full h:full obj:cover"
             loading="lazy"
@@ -46,7 +46,7 @@
         </div>
       </div>
       <img
-        :src="siteData.objectUrl(item.local_files[selectionIndex].path)"
+        :src="SiteData.objectUrl(item.local_files[selectionIndex].path)"
         :alt="item.local_files[selectionIndex].file_name"
         class="w:inherit r:6"
         loading="lazy"
@@ -69,7 +69,7 @@
 import Button from "primevue/button";
 import Tag from "primevue/tag";
 
-import { siteData } from "~/utils";
+import { SiteData } from "~/utils";
 
 const props = defineProps<{
   item: ImageItem;

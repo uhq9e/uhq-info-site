@@ -22,7 +22,7 @@
                 class="h:full r:6 shadow-2 aspect:1/1 bg:center bg:cover"
                 :class="{ 'filter:blur(15px)': file.nsfw }"
                 :style="{
-                  backgroundImage: `url('${siteData.objectUrl(
+                  backgroundImage: `url('${SiteData.objectUrl(
                     file.local_files[0].path
                   )}')`,
                 }"
@@ -49,7 +49,7 @@ import BlockUI from "primevue/blockui";
 import Paginator from "primevue/paginator";
 
 import { groupBy } from "lodash-es";
-import { sortMetaArrayToFormat, siteData } from "~/utils";
+import { sortMetaArrayToFormat, SiteData } from "~/utils";
 
 import type { DataTableSortMeta } from "primevue/datatable";
 

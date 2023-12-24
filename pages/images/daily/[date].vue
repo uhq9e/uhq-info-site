@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { siteData } from "~/utils";
+import { SiteData } from "~/utils";
 
 const route = useRoute();
 const { data, pending, error, execute } = await useFetch<
@@ -46,7 +46,7 @@ const pageTitle = pageTitleFormat(pageDescription);
 const pageImageItem = computed(() => data.value?.items.find((v) => !v.nsfw));
 const pageImage = computed(() =>
   pageImageItem.value
-    ? siteData.objectUrl(pageImageItem.value.local_files[0].path)
+    ? SiteData.objectUrl(pageImageItem.value.local_files[0].path)
     : undefined
 );
 
@@ -63,7 +63,7 @@ useSeoMeta({
 
 const shareToQQURL = computed(() => {
   const components = {
-    url: `${siteData.host}${route.fullPath}`,
+    url: `${SiteData.host}${route.fullPath}`,
     title: pageTitle,
     summary: pageDescription,
     pics: pageImage.value,

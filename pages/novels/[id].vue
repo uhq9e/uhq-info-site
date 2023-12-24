@@ -34,7 +34,7 @@
     <Divider />
     <div class="px:16 f:yellow">
       如果字太小看不清，可以双指放大，或<NuxtLink
-        :href="siteData.objectUrl(data.object?.key)"
+        :href="SiteData.objectUrl(data.object?.key)"
         target="_blank"
         class="f:bold"
         >下载源PDF文件阅读</NuxtLink
@@ -48,7 +48,7 @@
             cMapUrl: 'https://unpkg.com/pdfjs-dist/cmaps/',
             url: isDev
               ? `http://localhost:3000/test.pdf`
-              : siteData.objectUrl(data.object?.key),
+              : SiteData.objectUrl(data.object?.key),
           }"
           :width="viewerWidth"
           :scale="1.4143"
@@ -63,14 +63,14 @@
 <script setup lang="ts">
 import Divider from "primevue/divider";
 import Tag from "primevue/tag";
-import { siteData } from "~/utils";
+import { SiteData } from "~/utils";
 
 const isDev = process.env.NODE_ENV === "development";
 
 const route = useRoute();
 
 const data = await $fetch<Novel>(
-  `${isDev ? siteData.hostDev : siteData.host}/api/novels/item/${
+  `${isDev ? SiteData.hostDev : SiteData.host}/api/novels/item/${
     route.params.id
   }`
 );
