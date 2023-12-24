@@ -1,0 +1,24 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pull repository and build
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /root/frontend/uhq-info-site/ && git pull && bun run build
+            systemctl restart blog_frontend.service
+      - run: echo "🍏 This job's status is ${{ job.status }}."

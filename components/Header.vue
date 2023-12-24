@@ -105,11 +105,13 @@ const items: MenuItem[] = [
     icon: "pi pi-book",
     to: "/novels",
   },
+  /*
   {
     label: "随想",
     icon: "pi pi-comment",
     to: "/thoughts",
   },
+  */
 ];
 
 function isActive(linkPath: string): boolean {
