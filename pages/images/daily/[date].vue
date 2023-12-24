@@ -5,6 +5,7 @@
       :caption="pageDescription"
       show-back-button
     >
+      <!--
       <template #after>
         <div class="ml:8">
           <NuxtLink :href="shareToQQURL" target="_blank" title="分享到QQ"
@@ -12,6 +13,7 @@
           >
         </div>
       </template>
+      -->
     </PageTitle>
     <div
       class="flex flex:col w:full align-items:center as:center gap:8 general-width"

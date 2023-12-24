@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <Head>
-      <Meta name="theme-color" content="#a367b1" />
+      <Meta name="theme-color" content="#c384db" />
     </Head>
     <NuxtLoadingIndicator />
     <Toast />
@@ -19,7 +19,7 @@ const { init, Style } = pkg;
 
 Style.extend("classes", {
   "general-width": "max-w:40rem",
-  "large-width" : "max-w:50rem",
+  "large-width": "max-w:50rem",
   "text-outline":
     "text-shadow:-1|-1|0|gray-84,1|-1|0|gray-84,-1|1|0|gray-84,1|1|0|gray-84",
 });
@@ -30,7 +30,7 @@ onMounted(() => {
   link.rel = "stylesheet";
   link.type = "text/css";
   link.href =
-    "https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700&display=swap";
+    "https://font.sec.miui.com/font/css?family=MiSans:200,300,400,450,500,600,650,700:Chinese_Simplify,Chinese_Traditional,Latin&display=swap";
   document.getElementsByTagName("head")[0].appendChild(link);
 });
 </script>

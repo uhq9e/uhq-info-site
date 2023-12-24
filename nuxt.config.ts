@@ -4,23 +4,18 @@ import zh_CN from "./locales/primevue/zh-CN";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   // plugins: ["./plugins/primevue"],
-  modules: [
-    "nuxt-primevue",
-    "@vueuse/nuxt",
-    "@nuxtjs/i18n",
-    [
-      "@vee-validate/nuxt",
-      {
-        autoImports: true,
-        componentNames: {
-          Form: "VeeForm",
-          Field: "VeeField",
-          FieldArray: "VeeFieldArray",
-          ErrorMessage: "VeeErrorMessage",
-        },
+  modules: ["nuxt-primevue", "@vueuse/nuxt", "@nuxtjs/i18n", [
+    "@vee-validate/nuxt",
+    {
+      autoImports: true,
+      componentNames: {
+        Form: "VeeForm",
+        Field: "VeeField",
+        FieldArray: "VeeFieldArray",
+        ErrorMessage: "VeeErrorMessage",
       },
-    ],
-  ],
+    },
+  ], "@nuxt/content"],
   i18n: {
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
@@ -59,6 +54,11 @@ export default defineNuxtConfig({
     public: {
       server: false,
     },
+  },
+  content: {
+    api: {
+      baseURL: '/content_api'
+    }
   },
   hooks: {
     /*

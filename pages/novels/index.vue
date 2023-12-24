@@ -2,12 +2,12 @@
   <div>
     <PageTitle value="鱼文" :caption="pageDescription" show-back-button />
     <div class="flex flex:col align-items:center">
-      <div class="general-width w:full">
+      <div class="general-width w:full flex flex:col gap:16">
         <NuxtLink v-for="item in data?.items" :to="`/novels/${item.id}`">
           <article
-            class="shadow-1 bg:white r:6 p:16 mt:24 cursor:pointer translateY(-0.5rem):hover ~transform|250ms|ease"
+            class="shadow-1 bg:white r:6 p:16 mt:16 cursor:pointer translateY(-0.5rem):hover ~transform|250ms|ease"
           >
-            <div class="f:1.5em f:bold mt:-24 mb:8 text-decoration">
+            <div class="f:1.5em f:bold mt:-32 mb:8 text-decoration">
               {{ item.title }}
             </div>
             <div class="mb:16">

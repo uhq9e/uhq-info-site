@@ -2,20 +2,20 @@
   <div>
     <PageTitle value="鱼图" :caption="pageDescription" />
     <section class="flex flex:col">
-      <div class="flex flex:col gap:8 align-items:center">
+      <div class="flex flex:col gap:16 align-items:center">
         <NuxtLink
           v-for="image in Object.entries(grouped)"
-          :to="`/images/daily-${image[0]}`"
+          :to="`/images/daily/${image[0]}`"
           class="general-width w:full"
         >
           <article
-            class="b:1 b:solid b:var(--surface-border) r:6 px:16 py:8 mt:16 bg:white translateY(-0.5rem):hover ~transform|250ms|ease"
+            class="shadow-1 r:6 p:16 mt:16 bg:white translateY(-0.5rem):hover ~transform|250ms|ease"
           >
-            <div class="f:1.5em f:bold mt:-24 mb:8 text-decoration">
+            <div class="f:1.5em f:bold mt:-32 mb:8 text-decoration">
               {{ image[0] }}
             </div>
             <div
-              class="w:full h:150 px:16 py:8 flex flex:row gap:8 overflow-x:hidden b:1 b:solid b:var(--surface-border) r:6 bg:var(--surface-ground)"
+              class="w:full h:150 px:16 py:8 flex flex:row gap:8 overflow-x:hidden b:2 b:dashed b:var(--surface-border) r:6 bg:var(--surface-ground)"
             >
               <div
                 v-for="file in image[1].slice(0, 6)"

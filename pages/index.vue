@@ -10,13 +10,20 @@
           <div class="f:3rem f:bold mb:16">
             <span class="heading-gradient">{{ t("site.title") }}</span>
           </div>
-          <p class="mt:0 mb:16 lh:1.5">{{ t("site.description") }}</p>
-
-          <NuxtLink
-            to="/images/daily"
-            class="p-button p-button-raised f:bold f:white f:white:hover"
-            >鱼图</NuxtLink
-          >
+          <p class="mt:0 lh:1.5">{{ t("site.description") }}</p>
+          <Divider class="w:50%@>sm w:full@<sm display:none@<sm" />
+          <div class="flex flex:col">
+            <NuxtLink
+              v-for="item in menuItems"
+              :to="item.to"
+              class="p:16 bg:#6366f110:hover w:50%@>sm w:full@<sm matrix(1,0,-0.2,1,16,0):hover>div@>sm scale(1.2):hover>div@<sm"
+            >
+              <div class="~transform|250ms|ease">
+                <i :class="item.icon" class="mr:4"></i>
+                {{ item.label }}
+              </div>
+            </NuxtLink>
+          </div>
         </section>
       </div>
       <div
@@ -31,6 +38,8 @@
 </template>
 
 <script setup lang="ts">
+import type { MenuItem } from "primevue/menuitem";
+import Divider from "primevue/divider";
 import { pageTitleFormat, siteData } from "~/utils";
 
 const { t } = useI18n();
@@ -49,6 +58,19 @@ useSeoMeta({
   ogImage: pageImage,
   twitterImage: pageImage,
 });
+
+const menuItems: MenuItem[] = [
+  {
+    label: "鱼图",
+    icon: "pi pi-image",
+    to: "/images/daily",
+  },
+  {
+    label: "鱼文",
+    icon: "pi pi-book",
+    to: "/novels",
+  },
+];
 </script>
 
 <style scoped lang="scss">
