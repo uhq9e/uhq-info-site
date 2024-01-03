@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="w:full rel">
-      <div class="flex flex:row h:100 py:8 gap:8">
+      <div class="flex flex:row flex:nowrap overflow-x:auto h:100 py:8 gap:8">
         <div
           v-for="(file, i) in item.local_files"
           :class="[
@@ -52,15 +52,22 @@
         loading="lazy"
       />
       <div
-        v-show="showNsfwMask"
-        class="abs top:0 right:0 bottom:0 left:0 bd:blur(75px) flex flex:row justify-content:center align-items:center"
+        v-if="showNsfwMask"
+        class="abs top:0 right:0 bottom:0 left:0 w:full h:full bd:blur(75px) flex flex:row justify-content:center align-items:center"
       >
         <div class="flex flex:col align-items:center">
           <h1 class="mb:2">NSFW</h1>
-          <div class="f:0.8em mb:16">工作时禁止观看</div>
+          <div class="f:0.8em mb:16">不宜工作时观看</div>
           <Button @click="showNsfwMask = false">显示内容</Button>
         </div>
       </div>
+      <Button
+        v-else
+        @click="showNsfwMask = true"
+        class="abs bottom:16 left:16"
+        size="small"
+        >隐藏内容</Button
+      >
     </div>
   </div>
 </template>

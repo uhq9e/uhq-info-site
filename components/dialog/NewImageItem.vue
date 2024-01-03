@@ -218,36 +218,51 @@ const onSubmit = async () => {
     if (!values) continue;
 
     if (!isEdit) {
-      let requests: Promise<InsertResponse<string>>[] = [];
+      let pendingLocalItems: File[] = [];
+      let pendingWebItems: string[] = [];
+
       for (const file of values.images) {
         if (file.type === "local") {
-          requests.push(
-            $fetch<InsertResponse<string>>("/api/storage/image/item", {
-              method: "POST",
-              body: file.file,
-            })
-          );
+          pendingLocalItems.push(file.file);
         } else {
-          requests.push(
-            $fetch<InsertResponse<string>>("/api/storage/image/item_from_web", {
-              method: "POST",
-              body: file.url,
-            })
-          );
+          pendingWebItems.push(file.url);
         }
       }
 
-      let uploadResults;
+      let imageIds: string[] = [];
 
       try {
-        uploadResults = await Promise.all(requests);
+        if (pendingLocalItems.length) {
+          const formData = new FormData();
+
+          for (const file of pendingLocalItems) {
+            formData.append("files", file);
+          }
+
+          let result = await $fetch<InsertResponse<string[]>>(
+            "/api/storage/image/item_multi",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          imageIds = [...imageIds, ...result.id];
+        }
+        if (pendingWebItems.length) {
+          let result = await $fetch<InsertResponse<string[]>>(
+            "/api/storage/image/item_from_web_multi",
+            {
+              method: "POST",
+              body: pendingWebItems.join(","),
+            }
+          );
+          imageIds = [...imageIds, ...result.id];
+        }
       } catch (error) {
         Toast.error("图片上传阶段失败，请检查错误并重试", error);
         uploading.value = false;
         return;
       }
-
-      let imageIds = uploadResults.map((v) => v.id);
 
       try {
         let insertedItem = await $fetch<InsertResponse<number>>(
