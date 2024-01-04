@@ -10,7 +10,7 @@
       :multi-sort-meta="defaultOrderBy"
       sort-mode="multiple"
       v-model:filters="filters"
-      :globalFilterFields="['id', 'date', 'nsfw']"
+      :globalFilterFields="['id', 'author_id', 'date', 'nsfw']"
       filterDisplay="menu"
       data-key="id"
       lazy
@@ -46,7 +46,7 @@
           ></div>
         </template>
       </Column>
-      <Column field="author_id" header="作者">
+      <Column field="author_id" header="作者" :show-filter-match-modes="false">
         <template #body="slotProps">
           <AuthorPanel :author="slotProps.data.author" v-slot="slot">
             <Tag
@@ -55,6 +55,15 @@
               @click="slot.op?.show($event)"
             ></Tag>
           </AuthorPanel>
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <InputNumber
+            v-model="filterModel.value"
+            @keydown.enter="filterCallback()"
+            :useGrouping="false"
+            class="p-column-filter"
+            placeholder="检索作者ID"
+          />
         </template>
       </Column>
       <Column
@@ -107,20 +116,24 @@
               severity="info"
               text
             />
-            <Button
-              @click="onDeleteItem(slotProps.data.id)"
-              icon="pi pi-trash"
-              size="small"
-              severity="danger"
-              :loading="loading"
-              text
-            />
+            <ConfirmPanel
+              @execute="() => onDeleteItem(slotProps.data.id)"
+              v-slot="slot"
+            >
+              <Button
+                @click="slot.op?.show($event)"
+                icon="pi pi-trash"
+                size="small"
+                severity="danger"
+                :loading="loading"
+                text
+              />
+            </ConfirmPanel>
           </div>
         </template>
       </Column>
     </DataTable>
     <Toast />
-    <ConfirmDialog />
     <DynamicDialog />
   </div>
 </template>
@@ -129,7 +142,6 @@
 import NewImageItem from "@/components/dialog/NewImageItem.vue";
 import Button from "primevue/button";
 import Checkbox from "primevue/checkbox";
-import ConfirmDialog from "primevue/confirmdialog";
 import DynamicDialog from "primevue/dynamicdialog";
 import InputNumber from "primevue/inputnumber";
 import Menubar from "primevue/menubar";
@@ -167,12 +179,12 @@ interface QueryParams {
 const defaultOrderBy: DataTableSortMeta[] = [{ field: "id", order: -1 }];
 const filters = ref({
   id: { value: null, matchMode: FilterMatchMode.EQUALS },
+  author_id: { value: null, matchMode: FilterMatchMode.EQUALS },
   date: { value: null, matchMode: FilterMatchMode.EQUALS },
   nsfw: { value: null, matchMode: FilterMatchMode.EQUALS },
 });
 
 const { t } = useI18n();
-const confirm = useConfirm();
 const toast = useToast();
 const dialog = useDialog();
 
@@ -196,37 +208,27 @@ const { data, pending, error, execute } = useFetch<ListResponse<ImageItem>>(
 );
 
 function onDeleteItem(id: number) {
-  confirm.require({
-    message: "你是否确定要删除？",
-    header: "确认删除",
-    icon: "pi pi-info-circle",
-    acceptClass: "p-button-danger p-button-text",
-    rejectClass: "p-button",
-    accept: () => {
-      loading.value = true;
-      $fetch
-        .raw(`/api/images/item/${id}`, {
-          method: "DELETE",
-          ignoreResponseError: true,
-        })
-        .then((resp) => {
-          statusHandler(resp.status, () => {
-            execute();
-          });
-        })
-        .catch(() => {
-          toast.add({
-            severity: "error",
-            summary: t("shared.error"),
-            detail: t("requestErrors.network"),
-            life: 3000,
-          });
-        })
-        .finally(() => {
-          loading.value = false;
-        });
-    },
-  });
+  loading.value = true;
+  $fetch
+    .raw(`/api/images/item/${id}`, {
+      method: "DELETE",
+      ignoreResponseError: true,
+    })
+    .catch(() => {
+      toast.add({
+        severity: "error",
+        summary: t("shared.error"),
+        detail: t("requestErrors.network"),
+        life: 3000,
+      });
+    })
+    .then((resp) => {
+      if (resp) statusHandler(resp.status);
+    })
+    .finally(() => {
+      execute();
+      loading.value = false;
+    });
 }
 
 function onPage(event: DataTablePageEvent) {
@@ -235,6 +237,8 @@ function onPage(event: DataTablePageEvent) {
     offset: event.first,
     order_by: sortMetaArrayToFormat(event.multiSortMeta ?? defaultOrderBy),
     id: (event.filters.id as DataTableFilterMetaData).value ?? undefined,
+    author_id:
+      (event.filters.author_id as DataTableFilterMetaData).value ?? undefined,
     date:
       formatDate((event.filters.date as DataTableFilterMetaData).value) ??
       undefined,
@@ -250,6 +254,8 @@ function onSort(event: DataTableSortEvent) {
     offset: event.first,
     order_by: sortMetaArrayToFormat(event.multiSortMeta ?? defaultOrderBy),
     id: (event.filters.id as DataTableFilterMetaData).value ?? undefined,
+    author_id:
+      (event.filters.author_id as DataTableFilterMetaData).value ?? undefined,
     date:
       formatDate((event.filters.date as DataTableFilterMetaData).value) ??
       undefined,
@@ -265,6 +271,8 @@ function onFilter(event: DataTableFilterEvent) {
     offset: event.first,
     order_by: sortMetaArrayToFormat(event.multiSortMeta ?? defaultOrderBy),
     id: (event.filters.id as DataTableFilterMetaData).value ?? undefined,
+    author_id:
+      (event.filters.author_id as DataTableFilterMetaData).value ?? undefined,
     date:
       formatDate((event.filters.date as DataTableFilterMetaData).value) ??
       undefined,

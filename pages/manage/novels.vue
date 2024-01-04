@@ -88,19 +88,23 @@
               severity="info"
               text
             />
-            <Button
-              @click="onDeleteItem(slotProps.data.id)"
-              icon="pi pi-trash"
-              size="small"
-              severity="danger"
-              :loading="loading"
-              text
-            />
+            <ConfirmPanel
+              @execute="() => onDeleteItem(slotProps.data.id)"
+              v-slot="slot"
+            >
+              <Button
+                @click="slot.op?.show($event)"
+                icon="pi pi-trash"
+                size="small"
+                severity="danger"
+                :loading="loading"
+                text
+              />
+            </ConfirmPanel>
           </div>
         </template>
       </Column>
     </DataTable>
-    <ConfirmDialog />
     <DynamicDialog />
   </div>
 </template>
@@ -117,7 +121,6 @@ import Menubar from "primevue/menubar";
 import Tag from "primevue/tag";
 import Checkbox from "primevue/checkbox";
 
-import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
 import { useDialog } from "primevue/usedialog";
 
@@ -149,7 +152,6 @@ const filters = ref({
 });
 
 const { t } = useI18n();
-const confirm = useConfirm();
 const toast = useToast();
 const dialog = useDialog();
 
@@ -173,37 +175,26 @@ const { data, pending, error, execute } = useFetch<ListResponse<Novel>>(
 );
 
 function onDeleteItem(id: number) {
-  confirm.require({
-    message: "你是否确定要删除？",
-    header: "确认删除",
-    icon: "pi pi-info-circle",
-    acceptClass: "p-button-danger p-button-text",
-    rejectClass: "p-button",
-    accept: () => {
-      loading.value = true;
-      $fetch
-        .raw(`/api/novels/item/${id}`, {
-          method: "DELETE",
-          ignoreResponseError: true,
-        })
-        .then((resp) => {
-          statusHandler(resp.status, () => {
-            execute();
-          });
-        })
-        .catch(() => {
-          toast.add({
-            severity: "error",
-            summary: t("shared.error"),
-            detail: t("requestErrors.network"),
-            life: 3000,
-          });
-        })
-        .finally(() => {
-          loading.value = false;
-        });
-    },
-  });
+  $fetch
+    .raw(`/api/novels/item/${id}`, {
+      method: "DELETE",
+      ignoreResponseError: true,
+    })
+    .catch(() => {
+      toast.add({
+        severity: "error",
+        summary: t("shared.error"),
+        detail: t("requestErrors.network"),
+        life: 3000,
+      });
+    })
+    .then((resp) => {
+      if (resp) statusHandler(resp.status);
+    })
+    .finally(() => {
+      execute();
+      loading.value = false;
+    });
 }
 
 function onPage(event: DataTablePageEvent) {

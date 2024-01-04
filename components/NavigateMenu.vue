@@ -1,18 +1,18 @@
 <template>
   <Menu :model="items">
     <template #item="{ item, props }">
-      <a
+      <NuxtLink
         v-ripple
         :class="[
           'flex align-items:center bg:transparent',
-          { 'item-actived': route.path === item.url },
+          { 'item-actived': route.path === item.to },
         ]"
-        :href="item.url"
+        :to="item.to"
         v-bind="props.action"
       >
         <span v-if="item.icon" :class="item.icon" />
         <span class="ml-2">{{ item.label }}</span>
-      </a>
+      </NuxtLink>
     </template>
   </Menu>
 </template>

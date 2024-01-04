@@ -49,46 +49,25 @@ export function sortMetaArrayToFormat(metaArr: DataTableSortMeta[]): string {
   return metaArr.map((v) => sortMetaToFormat(v)).join(",");
 }
 
-export function statusHandler(status: number, success: Function) {
-  const toast = useToast();
+export function statusHandler(status: number, success?: Function) {
   const { t } = useI18n();
 
   switch (status) {
     case 200:
-      success();
-      toast.add({
-        severity: "info",
-        summary: t("shared.confirmed"),
-        detail: t("messages.successfulOperation"),
-        life: 3000,
-      });
+      if(success) success();
+      Toast.success(t("shared.confirmed"), t("messages.successfulOperation"));
       break;
 
     case 403:
-      toast.add({
-        severity: "error",
-        summary: t("shared.error"),
-        detail: t("requestErrors.status.403"),
-        life: 3000,
-      });
+      Toast.error(t("shared.error"), t("requestErrors.status.403"));
       break;
 
     case 404:
-      toast.add({
-        severity: "error",
-        summary: t("shared.error"),
-        detail: t("requestErrors.status.404"),
-        life: 3000,
-      });
+      Toast.error(t("shared.error"), t("requestErrors.status.404"));
       break;
 
     default:
-      toast.add({
-        severity: "error",
-        summary: t("shared.error"),
-        detail: t("requestErrors.status.404"),
-        life: 3000,
-      });
+      Toast.error(t("shared.error"), t("requestErrors.status.500"));
       break;
   }
 }
