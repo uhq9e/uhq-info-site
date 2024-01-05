@@ -29,6 +29,8 @@ interface NewImageItem {
   local_file_ids: string[];
 }
 
+type GroupedImageItems = [string, ImageItem[]];
+
 type LocalImageType = "local";
 type WebImageType = "web";
 

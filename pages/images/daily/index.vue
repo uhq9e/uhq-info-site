@@ -4,7 +4,7 @@
     <section class="flex flex:col">
       <div class="flex flex:col gap:16 align-items:center">
         <NuxtLink
-          v-for="image in Object.entries(grouped)"
+          v-for="image in data?.items"
           :to="`/images/daily/${image[0]}`"
           class="general-width w:full"
         >
@@ -69,7 +69,6 @@ useSeoMeta({
 interface QueryParams {
   offset: Ref<number>;
   limit: Ref<number>;
-  order_by?: Ref<string>;
   id?: Ref<number>;
   date?: Ref<string>;
   author_id?: Ref<number>;
@@ -89,22 +88,19 @@ const page = computed({
   set: (p) => router.push({ query: { p } }),
 });
 
-const rows = ref(100);
+const rows = ref(10);
 const first = ref((page.value - 1) * rows.value);
 const queryParams = ref<QueryParams>({
   offset: first,
   limit: rows,
-  order_by: ref(sortMetaArrayToFormat(defaultOrderBy)),
 });
 
 const { data, pending, error, execute } = await useFetch<
-  ListResponse<ImageItem>
->("/api/images/item", {
+  ListResponse<GroupedImageItems>
+>("/api/images/items_by_date", {
   query: queryParams,
   server: false,
 });
-
-const grouped = computed(() => groupBy(data.value?.items, "date"));
 
 function onFirstChange(first: number) {
   page.value = Math.floor(first / rows.value) + 1;
