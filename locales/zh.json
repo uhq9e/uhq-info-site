@@ -5,7 +5,10 @@
   },
   "shared": {
     "error": "错误",
-    "confirmed": "已确认"
+    "confirmed": "已确认",
+    "nsfw": "NSFW",
+    "nsfwNotice": "不宜工作时观看",
+    "showContent": "显示内容"
   },
   "requestErrors": {
     "network": "网络错误",

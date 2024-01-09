@@ -52,17 +52,19 @@
         loading="lazy"
       />
       <div
-        v-if="showNsfwMask"
+        v-if="showNsfwMask && item.nsfw"
         class="abs top:0 right:0 bottom:0 left:0 w:full h:full bd:blur(75px) flex flex:row justify-content:center align-items:center"
       >
         <div class="flex flex:col align-items:center">
-          <h1 class="mb:2">NSFW</h1>
-          <div class="f:0.8em mb:16">不宜工作时观看</div>
-          <Button @click="showNsfwMask = false">显示内容</Button>
+          <h1 class="mb:2">{{ t("shared.nsfw") }}</h1>
+          <div class="f:0.8em mb:16">{{ t("shared.nsfwNotice") }}</div>
+          <Button @click="showNsfwMask = false">{{
+            t("shared.showContent")
+          }}</Button>
         </div>
       </div>
       <Button
-        v-else
+        v-if="!showNsfwMask && item.nsfw"
         @click="showNsfwMask = true"
         class="abs bottom:16 left:16"
         size="small"
@@ -77,6 +79,8 @@ import Button from "primevue/button";
 import Tag from "primevue/tag";
 
 import { SiteData } from "~/utils";
+
+const { t } = useI18n();
 
 const props = defineProps<{
   item: ImageItem;
