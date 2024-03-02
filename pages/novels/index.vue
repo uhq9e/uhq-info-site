@@ -2,8 +2,29 @@
   <div>
     <PageTitle value="鱼文" :caption="pageDescription" show-back-button />
     <div class="flex flex:col align-items:center">
+      <div class="general-width w:full mb:24">
+        <span><i class="pi pi-tags mr:4"></i><b>标签</b></span>
+        <div class="flex flex:wrap gap:8">
+          <!-- TODO: 做Tag页 -->
+          <NuxtLink
+            v-for="countItem in tagsCount"
+            :key="countItem.tag"
+            :to="`/novels?tag=${countItem.tag}`"
+            :class="[
+              'text-decoration italic',
+              {
+                'font:bold font-color:var(--primary-color)':
+                  tag === countItem.tag,
+              },
+            ]"
+          >
+            {{ `${countItem.tag}(${countItem.count})` }}
+          </NuxtLink>
+          <NuxtLink v-if="tag" :to="`/novels`">取消选择</NuxtLink>
+        </div>
+      </div>
       <div class="general-width w:full flex flex:col gap:16">
-        <NuxtLink v-for="item in data?.items" :to="`/novels/${item.id}`">
+        <NuxtLink v-for="item in data?.items" :to="`/novels/item/${item.id}`">
           <article
             class="shadow-1 bg:white r:6 p:16 mt:16 cursor:pointer translateY(-0.5rem):hover ~transform|250ms|ease"
           >
@@ -45,6 +66,9 @@ import Paginator from "primevue/paginator";
 import { pageTitleFormat } from "~/utils";
 
 import type { DataTableSortMeta } from "primevue/datatable";
+import type { WritableComputedRef } from "vue";
+
+const isDev = process.env.NODE_ENV === "development";
 
 interface QueryParams {
   offset: Ref<number>;
@@ -54,6 +78,7 @@ interface QueryParams {
   date?: Ref<string>;
   author_id?: Ref<number>;
   nsfw?: Ref<boolean>;
+  tags: WritableComputedRef<string | undefined>;
 }
 
 const pageTitle = pageTitleFormat("鱼文");
@@ -77,7 +102,12 @@ const router = useRouter();
 
 const page = computed({
   get: () => Number(route.query.p ?? "1"),
-  set: (p) => router.push({ query: { p } }),
+  set: (p) => router.push({ query: { ...route.query, p } }),
+});
+
+const tag = computed({
+  get: () => route.query.tag as string | undefined,
+  set: (p) => router.push({ query: { ...route.query, tag: p } }),
 });
 
 const rows = ref(20);
@@ -86,6 +116,7 @@ const first = ref((page.value - 1) * rows.value);
 const queryParams = ref<QueryParams>({
   offset: first,
   limit: rows,
+  tags: tag,
   order_by: ref(sortMetaArrayToFormat(defaultOrderBy)),
 });
 
@@ -95,6 +126,10 @@ const { data, pending, error, execute } = useFetch<ListResponse<Novel>>(
     query: queryParams,
     server: false,
   }
+);
+
+const tagsCount = await $fetch<TagsCount[]>(
+  `${isDev ? SiteData.hostDev : SiteData.host}/api/novels/tags_count`
 );
 
 function onFirstChange(first: number) {

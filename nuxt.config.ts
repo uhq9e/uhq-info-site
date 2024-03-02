@@ -4,25 +4,32 @@ import zh_CN from "./locales/primevue/zh-CN";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   // plugins: ["./plugins/primevue"],
-  modules: ["nuxt-primevue", "@vueuse/nuxt", "@nuxtjs/i18n", [
-    "@vee-validate/nuxt",
-    {
-      autoImports: true,
-      componentNames: {
-        Form: "VeeForm",
-        Field: "VeeField",
-        FieldArray: "VeeFieldArray",
-        ErrorMessage: "VeeErrorMessage",
+  modules: [
+    "nuxt-primevue",
+    "@vueuse/nuxt",
+    "@nuxtjs/i18n",
+    [
+      "@vee-validate/nuxt",
+      {
+        autoImports: true,
+        componentNames: {
+          Form: "VeeForm",
+          Field: "VeeField",
+          FieldArray: "VeeFieldArray",
+          ErrorMessage: "VeeErrorMessage",
+        },
       },
-    },
-  ], "@nuxt/content"],
+    ],
+    "@nuxt/content",
+  ],
   i18n: {
     vueI18n: "./i18n.config.ts", // if you are using custom path, default
   },
   css: [
     "primeicons/primeicons.css",
     // "primeflex/primeflex.scss",
-    "@/assets/themes/lara-light-indigo-modified/theme.css",
+    // "@/assets/themes/lara-light-indigo-modified/theme.css",
+    "primevue/resources/themes/lara-light-indigo/theme.css",
     "@/assets/styles/main.css",
   ],
   primevue: {
@@ -57,8 +64,8 @@ export default defineNuxtConfig({
   },
   content: {
     api: {
-      baseURL: '/content_api'
-    }
+      baseURL: "/content_api",
+    },
   },
   hooks: {
     /*

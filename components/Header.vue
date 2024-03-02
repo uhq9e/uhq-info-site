@@ -1,6 +1,6 @@
 <template>
   <Menubar
-    :model="items"
+    :model="menuItems"
     :pt="{
       root: {
         style: {
@@ -88,31 +88,11 @@
 <script setup lang="ts">
 import Menubar from "primevue/menubar";
 
-import type { MenuItem } from "primevue/menuitem";
+import { menuItems } from "@/utils/misc";
 
 const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
-
-const items: MenuItem[] = [
-  {
-    label: "鱼图",
-    icon: "pi pi-image",
-    to: "/images/daily",
-  },
-  {
-    label: "鱼文",
-    icon: "pi pi-book",
-    to: "/novels",
-  },
-  /*
-  {
-    label: "随想",
-    icon: "pi pi-comment",
-    to: "/thoughts",
-  },
-  */
-];
 
 function isActive(linkPath: string): boolean {
   return route.path === linkPath;

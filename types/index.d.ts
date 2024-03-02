@@ -14,3 +14,8 @@ interface UpdateResponse<T> {
 interface TokenStorage {
   token: string | null;
 }
+
+interface TagsCount {
+  tag: string;
+  count: number;
+}

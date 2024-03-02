@@ -2,10 +2,15 @@
 @import url("./lib.css");
 
 :root {
-  font-family: "Inter var", "MiSans";
+  font-family: var(--font-family) !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   --surface-color: #e5e7eb;
+  --font-family: "Inter var", "MiSans";
+}
+
+.p-component {
+  font-family: var(--font-family) !important;
 }
 
 * {

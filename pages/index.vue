@@ -38,7 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import type { MenuItem } from "primevue/menuitem";
+import { menuItems } from "@/utils/misc";
+
 import Divider from "primevue/divider";
 import { pageTitleFormat, SiteData } from "~/utils";
 
@@ -46,7 +47,7 @@ const { t } = useI18n();
 
 const pageTitle = pageTitleFormat("主页");
 const pageDescription = "若千人的末路";
-const pageImage = `${SiteData.host}images/hero.webp`;
+const pageImage = `${SiteData.host}/images/hero.webp`;
 
 useSeoMeta({
   title: pageTitle,
@@ -58,19 +59,6 @@ useSeoMeta({
   ogImage: pageImage,
   twitterImage: pageImage,
 });
-
-const menuItems: MenuItem[] = [
-  {
-    label: "鱼图",
-    icon: "pi pi-image",
-    to: "/images/daily",
-  },
-  {
-    label: "鱼文",
-    icon: "pi pi-book",
-    to: "/novels",
-  },
-];
 </script>
 
 <style scoped lang="scss">

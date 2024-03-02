@@ -52,6 +52,7 @@ onMounted(() => {
 <style>
 .app-page {
   margin-top: 5rem;
+  height: calc(100vh - 5rem - 8px) !important;
 }
 
 .page-enter-active,

@@ -1,0 +1,20 @@
+<template>
+  <div class="flex h:full">
+    <Menu :model="items" class="w:15rem mr:4" />
+    <div class="h:inherit w:full">
+      <NuxtPage />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Menu from "primevue/menu";
+import type { MenuItem } from "primevue/menuitem";
+
+const items: MenuItem[] = [
+  {
+    label: "是勇者系列Logo生成器",
+    to: "/tools/logo-generator",
+  },
+];
+</script>

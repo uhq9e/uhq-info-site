@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { MenuItem } from "primevue/menuitem";
 
 export enum SocialPostTypeEnum {
   Unknown = 0,
@@ -53,3 +54,28 @@ export const UploadNovelItemSchema = z.object({
 });
 
 export type UploadNovelItem = z.infer<typeof UploadNovelItemSchema>;
+
+export const menuItems: MenuItem[] = [
+  {
+    label: "鱼图",
+    icon: "pi pi-image",
+    to: "/images/daily",
+  },
+  {
+    label: "鱼文",
+    icon: "pi pi-book",
+    to: "/novels",
+  },
+  /*
+  {
+    label: "工具",
+    icon: "pi pi-th-large",
+    to: "/tools",
+  },
+  */
+  {
+    label: "Logo生成器",
+    icon: "pi pi-th-large",
+    to: "/tools/logo-generator",
+  },
+];

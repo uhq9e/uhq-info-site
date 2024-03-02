@@ -68,6 +68,7 @@ import { SiteData } from "~/utils";
 const isDev = process.env.NODE_ENV === "development";
 
 const route = useRoute();
+const { t } = useI18n();
 
 const data = await $fetch<Novel>(
   `${isDev ? SiteData.hostDev : SiteData.host}/api/novels/item/${
@@ -75,7 +76,10 @@ const data = await $fetch<Novel>(
   }`
 );
 
-const pageTitle = computed(() => pageTitleFormat(data.title));
+const pageTitle = computed(
+  () =>
+    (data.nsfw ? `[${t("shared.nsfw")}] ` : "") + pageTitleFormat(data.title)
+);
 const pageDescription = computed(() => data.description);
 
 useSeoMeta({

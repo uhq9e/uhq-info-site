@@ -25,5 +25,12 @@
     "wrongToken": "Token有误",
     "itemDeleted": "条目已删除",
     "successfulOperation": "操作成功"
+  },
+  "dearuSeries": {
+    "yuyuyu": "结城友奈是勇者",
+    "wasuyu": "鹫尾须美是勇者",
+    "nowayu": "乃木若叶是勇者",
+    "kumeyu": "楠芽吹是勇者",
+    "uhimi": "上里日向是巫女"
   }
 }
