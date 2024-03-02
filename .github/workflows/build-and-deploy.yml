@@ -19,6 +19,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd /root/frontend/uhq-info-site/ && /usr/bin/git pull && /root/.bun/bin/bun run build
+            cd /root/frontend/uhq-info-site/ && /usr/bin/git pull && /root/.bun/bin/bun install && /root/.bun/bin/bun run build
             systemctl restart blog_frontend.service
       - run: echo "🍏 This job's status is ${{ job.status }}."
