@@ -49,7 +49,7 @@ import Checkbox from "primevue/checkbox";
 import Dropdown from "primevue/dropdown";
 
 import { LogoGenerator, nowayu, kumeyu } from "dearu-logo-generator";
-import type { HighlightRange } from "dearu-logo-generator/types/lib/types/shared";
+import type { IHighlightRange } from "dearu-logo-generator/types/lib/types/shared";
 
 const { t } = useI18n();
 
@@ -116,10 +116,10 @@ function getDirectionByBool(isVertical: boolean) {
 
 function parseHightlightsFromLines(
   lines: string[]
-): [string[], HighlightRange[]] {
+): [string[], IHighlightRange[]] {
   const re = /\[(.*?)\]/g;
 
-  let resultHighlights: HighlightRange[] = [];
+  let resultHighlights: IHighlightRange[] = [];
   let resultLines: string[] = [];
 
   lines.forEach((line, i) => {
