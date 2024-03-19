@@ -51,6 +51,9 @@ import Dropdown from "primevue/dropdown";
 import { LogoGenerator, nowayu, kumeyu } from "dearu-logo-generator";
 import type { IHighlightRange } from "dearu-logo-generator/types/lib/types/shared";
 
+// 跳转到工具站
+await navigateTo("https://tools.wakachika.love", { external: true });
+
 const { t } = useI18n();
 
 const pageTitle = pageTitleFormat("是勇者系列Logo生成器");
@@ -177,4 +180,6 @@ watch([isVertical, selectedSeries], ([v, ser]) => {
     loading.value = false;
   });
 });
+
+watch([firstLine, secondLine], () => onGenerate());
 </script>

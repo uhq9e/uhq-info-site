@@ -74,8 +74,8 @@ export const menuItems: MenuItem[] = [
   },
   */
   {
-    label: "Logo生成器",
+    label: "工具箱",
     icon: "pi pi-th-large",
-    to: "/tools/logo-generator",
+    to: "https://tools.wakachika.love",
   },
 ];
